@@ -111,7 +111,32 @@
             z-index: 9998;
             overflow: hidden;
         }
-        
+        .main-site-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.main-site-btn a {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.main-site-btn a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
         .time-vortex {
             position: absolute;
             top: 50%;
@@ -349,24 +374,23 @@
         }
         
         h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: glowText 3s infinite alternate;
-            background: linear-gradient(90deg, 
-                var(--primary-blue), 
-                var(--primary-teal), 
-                var(--primary-green), 
-                var(--primary-yellow), 
-                var(--primary-orange), 
-                var(--primary-pink), 
-                var(--primary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 400% 400%;
-            animation: gradientShift 10s infinite;
-        }
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(90deg, 
+        var(--primary-blue), 
+        var(--primary-teal), 
+        var(--primary-green), 
+        var(--primary-yellow), 
+        var(--primary-orange), 
+        var(--primary-pink), 
+        var(--primary-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%;
+    animation: gradientShift 10s infinite;
+}
         
         @keyframes glowText {
             0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
@@ -1163,6 +1187,33 @@
                 }
             }
         }
+        .music-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-purple);
+}
+
+.music-btn i {
+    font-size: 1.2rem;
+}
     </style>
 </head>
 <body>
@@ -1192,12 +1243,15 @@
             <div class="ripple"></div>
             <div class="ripple"></div>
         </div>
+        <div class="main-site-btn">
+            <a href="https://www.technoda.org.il/" target="_blank" rel="noopener noreferrer">לאתר הטכנודע</a>
+        </div>
         <div class="container">
             <div class="header-content">
                 <div class="logo-container">
                     <img src="https://media.getmood.io/warehouse/dynamic/217495.png" alt="טכנודע חדרה" class="logo">
                 </div>
-                <h1 class="animate__animated animate__fadeInDown">טכנודע חדרה לוקח אתכם למסע במנהרת הזמן</h1>
+                <h1>טכנודע חדרה לוקח אתכם למסע במנהרת הזמן</h1>
                 <div class="event-date animate__animated animate__fadeInUp">חגיגת פסח 2025 • 14-17 באפריל • 09:00-16:00</div>
                 <div class="countdown animate__animated animate__fadeIn animate__delay-1s">
                     <div class="countdown-item">
@@ -1211,6 +1265,10 @@
                     <div class="countdown-item">
                         <div class="countdown-number" id="minutes">00</div>
                         <div class="countdown-label">דקות</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">שניות</div>
                     </div>
                 </div>
                 <a href="https://web.attractinet.co.il/TechnoDa/?jumpTo=Purches&lang=he" target="_blank" rel="noopener noreferrer" class="btn btn-large animate__animated animate__pulse animate__infinite animate__slow">לרכישת כרטיסים עכשיו</a>
@@ -1394,7 +1452,13 @@
             </div>
         </div>
     </footer>
-
+    <audio id="background-music" loop>
+        <source src="1.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="music-toggle" class="music-btn">
+        <i class="fas fa-volume-mute" id="music-icon"></i>
+    </button>
     <script>
         // Initial Loading Animation
         window.addEventListener('load', function() {
@@ -1558,23 +1622,26 @@
         
         // Countdown Timer
         function updateCountdown() {
-            const eventDate = new Date('April 14, 2025 09:00:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = eventDate - now;
-            
-            if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                
-                document.getElementById('days').innerText = days.toString().padStart(2, '0');
-                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-            }
-        }
+    const eventDate = new Date('April 14, 2025 09:00:00').getTime();
+    const now = new Date().getTime();
+    const timeLeft = eventDate - now;
+    
+    if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
         
-        updateCountdown();
-        setInterval(updateCountdown, 60000);
+        document.getElementById('days').innerText = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+    }
+}
+
+updateCountdown();
+// שינוי עדכון הספירה לאחור לכל שנייה במקום כל דקה
+setInterval(updateCountdown, 1000);
         
         // Scroll Animation
         function checkScrollAnimation() {
@@ -1613,6 +1680,38 @@
                 behavior: 'smooth'
             });
         });
+        const backgroundMusic = document.getElementById('background-music');
+    const musicToggle = document.getElementById('music-toggle');
+    const musicIcon = document.getElementById('music-icon');
+    let isMusicPlaying = false;
+    
+    // נמוך את עוצמת השמע
+    backgroundMusic.volume = 0.2;
+    
+    musicToggle.addEventListener('click', function() {
+        if (isMusicPlaying) {
+            backgroundMusic.pause();
+            musicIcon.classList.remove('fa-volume-up');
+            musicIcon.classList.add('fa-volume-mute');
+        } else {
+            backgroundMusic.play();
+            musicIcon.classList.remove('fa-volume-mute');
+            musicIcon.classList.add('fa-volume-up');
+        }
+        isMusicPlaying = !isMusicPlaying;
+    });
+    
+    // נגן מוזיקה רק לאחר אינטראקציה של המשתמש עם העמוד
+    document.addEventListener('click', function() {
+        if (!isMusicPlaying) {
+            backgroundMusic.play().catch(error => {
+                console.log('Auto-play was prevented');
+            });
+            isMusicPlaying = true;
+            musicIcon.classList.remove('fa-volume-mute');
+            musicIcon.classList.add('fa-volume-up');
+        }
+    }, { once: true });
     </script>
 </body>
 </html>
