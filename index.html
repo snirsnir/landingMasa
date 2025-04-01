@@ -1214,9 +1214,340 @@
 .music-btn i {
     font-size: 1.2rem;
 }
+/* Dissolve Effect for Main Content */
+/* Dissolve Effect with 80s Neon Purple */
+body.loading {
+    overflow: hidden;
+}
+
+#mainContentWrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2.5s ease-in-out, visibility 0s 0.5s;
+    position: relative;
+}
+
+#mainContentWrapper.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 2.5s ease-in-out;
+}
+
+/* 80s style neon overlay */
+#neonOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(128, 0, 255, 0.8), rgba(200, 0, 255, 0.6), rgba(255, 0, 255, 0.8));
+    z-index: 999;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#neonOverlay.fade-out {
+    opacity: 0;
+}
+
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    position: relative;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Neon glow effect */
+.neon-glow {
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.8),
+                 0 0 10px rgba(255, 0, 255, 0.5),
+                 0 0 15px rgba(128, 0, 255, 0.5),
+                 0 0 20px rgba(128, 0, 255, 0.3);
+}
+/* הוסף את זה לקובץ ה-CSS */
+/* סגנון לכרטיסי פעילות עם תמונת רקע */
+/* סגנונות משותפים לכל כרטיסי הפעילויות עם רקע תמונה */
+/* סגנונות משותפים לכל כרטיסי הפעילויות עם רקע תמונה */
+.activity-card-with-bg {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+.activity-card-with-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 20px;
+}
+
+.activity-card-with-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, 
+        var(--primary-blue), 
+        var(--primary-teal), 
+        var(--primary-green), 
+        var(--primary-yellow), 
+        var(--primary-orange), 
+        var(--primary-pink), 
+        var(--primary-purple));
+    z-index: 2;
+    border-radius: 20px 20px 0 0;
+}
+
+.activity-card-with-bg h3, 
+.activity-card-with-bg p {
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+.activity-card-with-bg .activity-icon {
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+/* עדכון לסגנון הטקסט בכרטיסיות להוספת stroke שחור */
+.activity-card-with-bg h3 {
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.9),
+        1px -1px 0 rgba(0, 0, 0, 0.9),
+        -1px 1px 0 rgba(0, 0, 0, 0.9),
+        1px 1px 0 rgba(0, 0, 0, 0.9),
+        0 2px 4px rgba(0, 0, 0, 0.9);
+    font-weight: 700;
+}
+
+.activity-card-with-bg p {
+    color: white;
+    position: relative;
+    z-index: 2;
+    text-shadow: 
+         -1.5px -1.5px 0 rgba(0, 0, 0, 1),
+         1.5px -1.5px 0 rgba(0, 0, 0, 1),
+         -1.5px 1.5px 0 rgba(0, 0, 0, 1),
+         1.5px 1.5px 0 rgba(0, 0, 0, 1),
+         0 3px 5px rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+.activity-card-with-bg .activity-icon {
+    color: white;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* סגנון ספציפי עבור כרטיס 1 - סדנת כתב (כחול) */
+.activity-bg-1 {
+    background-image: url('1.jpg');
+}
+
+.activity-bg-1::before {
+    background: linear-gradient(135deg, 
+        rgba(78, 161, 217, 0.95), /* --primary-blue */
+        rgba(78, 161, 217, 0.75));
+}
+
+/* סגנון ספציפי עבור כרטיס 2 - התפתחות המיקרוסקופ (טורקיז) */
+.activity-bg-2 {
+    background-image: url('2.jpg');
+}
+
+.activity-bg-2::before {
+    background: linear-gradient(135deg, 
+        rgba(71, 185, 188, 0.95), /* --primary-teal */
+        rgba(71, 185, 188, 0.75));
+}
+
+/* סגנון ספציפי עבור כרטיס 3 - משחקי מחשב (סגול וורוד) */
+.activity-bg-3 {
+    background-image: url('3.jpg');
+}
+
+.activity-bg-3::before {
+    background: linear-gradient(135deg, 
+        rgba(238, 39, 104, 0.95), /* --primary-pink */
+        rgba(119, 104, 175, 0.75)); /* --primary-purple */
+}
+
+/* סגנון ספציפי עבור כרטיס 4 - פארק המדע (צהוב) */
+.activity-bg-4 {
+    background-image: url('4.jpg');
+}
+
+.activity-bg-4::before {
+    background: linear-gradient(135deg, 
+        rgba(255, 203, 26, 0.95), /* --primary-yellow */
+        rgba(255, 203, 26, 0.75));
+}
+
+/* סגנון ספציפי עבור כרטיס 5 - משחקי רצפה (כתום) */
+.activity-bg-5 {
+    background-image: url('5.jpg');
+}
+
+.activity-bg-5::before {
+    background: linear-gradient(135deg, 
+        rgba(243, 111, 35, 0.95), /* --primary-orange */
+        rgba(243, 111, 35, 0.75));
+}
+
+/* סגנון ספציפי עבור כרטיס 6 - דיאלוג בזמן (ירוק) */
+.activity-bg-6 {
+    background-image: url('6.jpg');
+}
+
+.activity-bg-6::before {
+    background: linear-gradient(135deg, 
+        rgba(133, 197, 78, 0.95), /* --primary-green */
+        rgba(133, 197, 78, 0.75));
+}
+/* Style for Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    overflow-y: auto;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.4s ease-out;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-orange);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--primary-pink);
+    transform: rotate(90deg);
+}
+
+.modal-title {
+    font-size: 2rem;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--primary-teal);
+}
+
+.modal-body {
+    margin-top: 20px;
+}
+
+/* Updated Extra Activities Section with Images */
+.extra-item {
+    position: relative;
+    padding-right: 80px;
+}
+
+.extra-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-left: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+}
+
+.extra-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.extra-item:hover .extra-image img {
+    transform: scale(1.0);
+}
+
+
+.info-btn {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-teal);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.info-btn:hover {
+    background: var(--primary-blue);
+    transform: translateY(-50%) scale(1.1);
+}
     </style>
 </head>
-<body>
+<body class="loading">
     <!-- Loader -->
     <div class="loader-container" id="loader">
         <div class="loader">
@@ -1231,7 +1562,8 @@
         <div class="time-particles" id="timeParticles"></div>
         <div class="time-travel-objects" id="travelObjects"></div>
     </div>
-    
+    <div id="neonOverlay"></div>
+    <div id="mainContentWrapper">
     <header>
         <div class="space-background"></div>
         <div class="stars" id="stars"></div>
@@ -1252,28 +1584,29 @@
                     <img src="https://media.getmood.io/warehouse/dynamic/217495.png" alt="טכנודע חדרה" class="logo">
                 </div>
                 <h1>טכנודע חדרה לוקח אתכם למסע במנהרת הזמן</h1>
-                <div class="event-date animate__animated animate__fadeInUp">חגיגת פסח 2025 • 14-17 באפריל • 09:00-16:00</div>
+                <div class="event-date animate__animated animate__fadeInUp">הפנינג פסח 2025 • 14-17 באפריל • 09:00-16:00</div>
                 <div class="countdown animate__animated animate__fadeIn animate__delay-1s">
                     <div class="countdown-item">
-                        <div class="countdown-number" id="days">00</div>
-                        <div class="countdown-label">ימים</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="hours">00</div>
-                        <div class="countdown-label">שעות</div>
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">שניות</div>
                     </div>
                     <div class="countdown-item">
                         <div class="countdown-number" id="minutes">00</div>
                         <div class="countdown-label">דקות</div>
                     </div>
                     <div class="countdown-item">
-                        <div class="countdown-number" id="seconds">00</div>
-                        <div class="countdown-label">שניות</div>
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">שעות</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">ימים</div>
                     </div>
                 </div>
-                <a href="https://web.attractinet.co.il/TechnoDa/?jumpTo=Purches&lang=he" target="_blank" rel="noopener noreferrer" class="btn btn-large animate__animated animate__pulse animate__infinite animate__slow">לרכישת כרטיסים עכשיו</a>
+                <a href="#hero-section" class="btn btn-large animate__animated animate__pulse animate__infinite animate__slow">למידע נוסף ורכישת כרטיסים</a>
                 <div class="scroll-down">
                     <i class="fas fa-chevron-down"></i>
+                </div>
                 </div>
             </div>
         </div>
@@ -1283,9 +1616,9 @@
         <div class="container">
             <div class="timeline-indicator"></div>
             
-            <section class="hero scroll-animation">
+            <section id="hero-section" class="hero scroll-animation">
                 <div class="timeline-node" style="top: 150px;"></div>
-                <h2 class="section-title">המוזיאון הישראלי לרפואה, חלל ומדע מזמין את כל ילדי ישראל</h2>
+                <h2 class="section-title">הטכנודע - המוזיאון הישראלי לרפואה ומדע חלל ומדע מזמין את כל ילדי ישראל</h2>
                 <div class="hero-content">
                     <img src="https://media.getmood.io/warehouse/dynamic/608397.jpg" alt="מסע במנהרת הזמן" style="max-width: 100%; height: auto; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);">
                     <p><strong>בחול המועד פסח, יוכלו הילדים לחוות מסע בלתי נשכח דרך מנהרת הזמן, שם יפגשו את המדענים הגדולים בהיסטוריה ויגלו את ההמצאות ששינו את עולמנו.</strong> בתוכנית מגוון סדנאות הכוללות התנסויות מדעיות מעשיות, מולטימדיה מרתקת ומשחקי מחשב ורצפה נוסטלגיים.</p>
@@ -1299,39 +1632,45 @@
             </section>
             
             <section class="activities">
-                <div class="activity-card scroll-animation">
+                <!-- כרטיס 1 - סדנת כתב -->
+                <div class="activity-card activity-card-with-bg activity-bg-1 scroll-animation">
                     <div class="activity-icon"><i class="fas fa-scroll"></i></div>
                     <h3>סדנת כתב</h3>
                     <p>איך כתבו והעבירו מסרים מהעת העתיקה ועד ימינו? בואו לגלות את התפתחות הכתב לאורך ההיסטוריה ולהתנסות בכתיבה בסגנונות שונים!</p>
                 </div>
                 
-                <div class="activity-card scroll-animation">
+                <!-- כרטיס 2 - התפתחות המיקרוסקופ -->
+                <div class="activity-card activity-card-with-bg activity-bg-2 scroll-animation">
                     <div class="activity-icon"><i class="fas fa-microscope"></i></div>
                     <h3>התפתחות המיקרוסקופ</h3>
                     <p>מעקב אחר התפתחות כלי חיוני בעולם המדע שמשמש את חוקרי המדע והרפואה מאז ועד היום. צפו בדגימות מרתקות דרך מיקרוסקופים מתקופות שונות!</p>
                 </div>
                 
-                <div class="activity-card scroll-animation">
+                <!-- כרטיס 3 - משחקי מחשב של פעם ושל היום -->
+                <div class="activity-card activity-card-with-bg activity-bg-3 scroll-animation">
                     <div class="activity-icon"><i class="fas fa-gamepad"></i></div>
                     <h3>משחקי מחשב של פעם ושל היום</h3>
                     <p>חוויית גיימינג נוסטלגית ומלהיבה שתאפשר לכם להכיר את התפתחות משחקי המחשב לאורך השנים - מפאקמן ועד המשחקים המתקדמים של ימינו!</p>
                 </div>
                 
-                <div class="activity-card scroll-animation">
+                <!-- כרטיס 4 - פארק המדע ומוזיאון המדע -->
+                <div class="activity-card activity-card-with-bg activity-bg-4 scroll-animation">
                     <div class="activity-icon"><i class="fas fa-flask"></i></div>
                     <h3>פארק המדע ומוזיאון המדע</h3>
                     <p>גלו את הפיזיקה שמאחורי בורג ארכימדס, צלחות הקול הענקיות והפרחים הסולאריים. סיור מודרך מרתק עם ניסויים והדגמות אינטראקטיביות!</p>
                 </div>
                 
-                <div class="activity-card scroll-animation">
+                <!-- כרטיס 5 - משחקי רצפה של פעם -->
+                <div class="activity-card activity-card-with-bg activity-bg-5 scroll-animation">
                     <div class="activity-icon"><i class="fas fa-dice"></i></div>
                     <h3>משחקי רצפה של פעם</h3>
                     <p>התנסות במשחקי ילדות נוסטלגיים שכולם אוהבים ומכירים מימים עברו. קלאס, גומי, חמש אבנים ועוד משחקים שהעבירו את הזמן בהנאה לפני עידן המסכים!</p>
                 </div>
                 
-                <div class="activity-card scroll-animation">
+                <!-- כרטיס 6 - דיאלוג בזמן עם הממציאים הגדולים -->
+                <div class="activity-card activity-card-with-bg activity-bg-6 scroll-animation">
                     <div class="activity-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>דיאלוג בזמן עם הממציאים הגדולים</h3>
+                    <h3>דיאלוג עם גדולי הממציאים</h3>
                     <p>סדנה הכוללת הדגמות מרתקות וחידון אינטראקטיבי עם הדמויות שעיצבו את עולם המדע. היפגשו עם איינשטיין, דה וינצ'י, גלילאו ועוד ממציאים ומדענים מהעבר!</p>
                 </div>
             </section>
@@ -1392,39 +1731,65 @@
 
             <section class="extra-activities scroll-animation">
                 <div class="timeline-node" style="top: 120px;"></div>
-                <h2 class="section-title">פעילויות נוספות במהלך הביקור</h2>
+                <h2 class="section-title">פעילויות נוספות במהלך הביקור (בתשלום נוסף)</h2>
                 <ul class="extra-list">
+                    <!-- מקום ראשון: מוזיאון הרפואה -->
                     <li class="extra-item">
-                        <div class="extra-icon"><i class="fas fa-star"></i></div>
-                        <div>
-                            <strong>מופע פלנטריום מרתק + כניסה למצפה הכוכבים</strong>
-                            <p>טלסקופים, כוכבים וסודות היקום! – 35 ₪ למשתתף.</p>
-                        </div>
+                      <div class="extra-image">
+                        <img src="8.jpg" alt="מוזיאון הרפואה">
+                      </div>
+                      <div>
+                        <strong>כניסה למוזיאון הרפואה</strong>
+                        <p>מסלול המוח או מסלול הלב – 70 ₪ למשתתף. חוויה אינטראקטיבית עם הדמיות תלת-ממדיות ומוצגים מרתקים!</p>
+                      </div>
+                      <button class="info-btn" onclick="openModal('modal2')">
+                        <i class="fas fa-info"></i>
+                      </button>
                     </li>
-                    
+                  
+                    <!-- מקום שני: תערוכה לקטנטנים -->
                     <li class="extra-item">
-                        <div class="extra-icon"><i class="fas fa-heartbeat"></i></div>
-                        <div>
-                            <strong>כניסה למוזיאון הרפואה</strong>
-                            <p>מסלול המוח או מסלול הלב – 70 ₪ למשתתף. חוויה אינטראקטיבית עם הדמיות תלת-ממדיות ומוצגים מרתקים!</p>
-                        </div>
+                      <div class="extra-image">
+                        <img src="9.jpg" alt="תערוכה לקטנטנים">
+                      </div>
+                      <div>
+                        <strong>תערוכה לקטנטנים (גילאי 3-7)</strong>
+                        <p>"המסע אל השמש"! מחיר הורה וילד 100 ₪ יחד. פעילות חווייתית המותאמת במיוחד לגיל הרך.</p>
+                      </div>
+                      <button class="info-btn" onclick="openModal('modal3')">
+                        <i class="fas fa-info"></i>
+                      </button>
                     </li>
-                    
+                  
+                    <!-- מקום שלישי: מופע פלנטריום -->
                     <li class="extra-item">
-                        <div class="extra-icon"><i class="fas fa-sun"></i></div>
-                        <div>
-                            <strong>תערוכה לקטנטנים (גילאי 3-7)</strong>
-                            <p>"המסע אל השמש"! מחיר הורה וילד 100 ₪ יחד. פעילות חווייתית המותאמת במיוחד לגיל הרך.</p>
-                        </div>
+                      <div class="extra-image">
+                        <img src="7.jpg" alt="מופע פלנטריום">
+                      </div>
+                      <div>
+                        <strong>מופע פלנטריום מרתק + כניסה למצפה הכוכבים</strong>
+                        <p>טלסקופים, כוכבים וסודות היקום! – 35 ₪ למשתתף.</p>
+                      </div>
+                      <button class="info-btn" onclick="openModal('modal1')">
+                        <i class="fas fa-info"></i>
+                      </button>
                     </li>
-                </ul>
+                  </ul>
             </section>
 
             <section class="cta-section scroll-animation">
                 <div class="timeline-node" style="top: 120px;"></div>
                 <div class="time-bubbles" id="timeBubbles"></div>
                 <div class="cta-content">
-                    <h2 class="section-title">הצטרפו אלינו למסע במנהרת הזמן!</h2>
+                    <h2 class="section-title" style="
+    color: transparent;
+    -webkit-text-stroke: 1.5px white;
+    text-stroke: 1.5px white;
+    text-shadow: 0 0 10px rgba(255, 221, 0, 0.9), 0 0 20px rgba(255, 221, 0, 0.5);
+">
+    הצטרפו אלינו למסע במנהרת הזמן!
+</h2>
+
                     <p>חוויה בלתי נשכחת לכל המשפחה, שתשלב למידה משמעותית עם כיף והנאה בחול המועד פסח. אל תפספסו את ההזדמנות להיכנס למנהרת הזמן ולפגוש את גדולי המדע והממציאים!</p>
                     <a href="https://web.attractinet.co.il/TechnoDa/?jumpTo=Purches&lang=he" target="_blank" rel="noopener noreferrer" class="btn btn-large">לרכישת כרטיסים עכשיו</a>
                 </div>
@@ -1442,15 +1807,17 @@
                     <p><a href="http://technoda.org.il/" target="_blank" style="color: var(--primary-yellow); text-decoration: none;">technoda.org.il</a></p>
                 </div>
                 <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/Technoda" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/technoda.hadera/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@technoda1" class="social-icon"><i class="fab fa-tiktok"></i></a>
                 </div>
                 <div class="copyright">
-                    &copy; טכנודע חדרה 2025 | כל הזכויות שמורות
+                    &copy; טכנודע חדרה | כל הזכויות שמורות
                 </div>
             </div>
         </div>
+    </div>
+
     </footer>
     <audio id="background-music" loop>
         <source src="1.mp3" type="audio/mpeg">
@@ -1459,31 +1826,301 @@
     <button id="music-toggle" class="music-btn">
         <i class="fas fa-volume-mute" id="music-icon"></i>
     </button>
+    <!-- Modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content" style="position: relative; overflow: hidden;">
+          
+          <!-- רקע שקוף עם תמונה -->
+          <div style="
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('7.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+          "></div>
+      
+          <!-- תוכן המודל -->
+          <div style="position: relative; z-index: 1;">
+            <div class="modal-close" onclick="closeModal('modal1')">
+              <i class="fas fa-times"></i>
+            </div>
+      
+            <h3 class="modal-title">מופע פלנטריום מרתק + כניסה למצפה הכוכבים</h3>
+      
+            <div class="modal-body" style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-color);">
+              <p style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.2rem;">
+                📢 הזמנה לחוויה אסטרונומית בלתי נשכחת
+              </p>
+      
+              <p style="margin-bottom: 0.8rem;">
+                הצטרפו אלינו למופע הפלנטריום:
+                <span style="font-weight: 600; color: var(--primary-blue); display: block; margin-top: 0.3rem;">
+                  "מחתיכת זכוכית ועד לטלסקופ"
+                </span>
+                מסע ויזואלי מרתק אל עומק היקום והכוכבים.
+              </p>
+      
+              <ul style="margin-top: 1.5rem; padding-right: 1.5rem; list-style: none;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-right: 1.2rem;">
+                  <i class="fas fa-star" style="color: var(--primary-blue); position: absolute; right: 0;"></i>
+                  תגליותיהם של גלילאו, ניוטון והאבל – וההשפעה על האנושות
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-right: 1.2rem;">
+                  <i class="fas fa-video" style="color: var(--primary-teal); position: absolute; right: 0;"></i>
+                  הקרנת סרט בפלנטריום – חוויה קולנועית בין-כוכבית
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-right: 1.2rem;">
+                  <i class="fas fa-tools" style="color: var(--primary-green); position: absolute; right: 0;"></i>
+                  סדנת הרכבת טלסקופ – שילוב של מדע, יצירה ודמיון
+                </li>
+              </ul>
+      
+              <div style="margin-top: 2rem; font-size: 1rem; background: rgba(0,0,0,0.03); padding: 1rem 1.2rem; border-radius: 12px;">
+                <p style="margin-bottom: 0.5rem;"><strong>🗓 מתי:</strong> חול המועד פסח</p>
+                <p style="margin-bottom: 0.5rem;"><strong>⏱ משך הפעילות:</strong> כ־40 דקות</p>
+                <p><strong>👨‍👩‍👧‍👦 גיל מומלץ:</strong> 8 ומעלה</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div id="modal2" class="modal">
+        <div class="modal-content" style="position: relative; overflow: hidden;">
+          
+          <!-- רקע שקוף עם תמונה -->
+          <div style="
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('8.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+          "></div>
+      
+          <!-- תוכן המודל -->
+          <div style="position: relative; z-index: 1;">
+            <div class="modal-close" onclick="closeModal('modal2')">
+              <i class="fas fa-times"></i>
+            </div>
+      
+            <h3 class="modal-title">כניסה למוזיאון הרפואה</h3>
+      
+            <div class="modal-body" style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-color);">
+              <p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem;">
+                🏥 המוזיאון הישראלי לרפואה ומדע — חוויה אינטראקטיבית פורצת דרך!
+              </p>
+      
+              <p style="margin-bottom: 1rem;">
+                לראשונה בישראל — מוזיאון ייחודי שמחבר בין מדע, רפואה וטכנולוגיה. מה מחכה לכם?
+              </p>
+      
+              <ul style="margin-bottom: 2rem; padding-right: 1.2rem; list-style: none;">
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-microscope" style="position: absolute; right: 0; color: var(--primary-blue);"></i>
+                  6 תערוכות מדהימות עם מעל 120 מיצגים אינטראקטיביים על גוף האדם והרפואה
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-user-nurse" style="position: absolute; right: 0; color: var(--primary-teal);"></i>
+                  חדרי ניתוח עם סימולטורים אנושיים: החלפת מסתם בלב, ברונכוסקופיה, הנשמות ועוד
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-brain" style="position: absolute; right: 0; color: var(--primary-purple);"></i>
+                  משחק בכדור בכוח המחשבה, מקרה בלשי גנטי, ודגם DNA ענקי בגובה 3 קומות!
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-route" style="position: absolute; right: 0; color: var(--primary-green);"></i>
+                  שני מסלולי סיור מרתקים: <strong>“לגעת בלב”</strong> ו־<strong>“המוח הגמיש”</strong>, כל אחד עם 3 תערוכות
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-user-friends" style="position: absolute; right: 0; color: var(--primary-orange);"></i>
+                  הסיור בקבוצות קטנות ובליווי מדריך צמוד
+                </li>
+              </ul>
+      
+              <div style="font-size: 1rem; background: rgba(0,0,0,0.03); padding: 1rem 1.2rem; border-radius: 12px;">
+                <p style="margin-bottom: 0.5rem;"><strong>⏱ משך הפעילות:</strong> משתנה לפי המסלול</p>
+                <p><strong>👨‍👩‍👧‍👦 גיל מומלץ:</strong> מגיל 8 ומעלה</p>
+              </div>
+      
+              <p style="margin-top: 2rem; font-weight: 600; text-align: center; color: var(--primary-pink);">
+                🔎 פרטים נוספים ניתן למצוא באתר <a href="https://www.technoda.org.il/" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">הטכנודע</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div id="modal3" class="modal">
+        <div class="modal-content" style="position: relative; overflow: hidden;">
+          
+          <!-- רקע שקוף עם תמונה -->
+          <div style="
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('9.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+          "></div>
+      
+          <!-- תוכן המודל -->
+          <div style="position: relative; z-index: 1;">
+            <div class="modal-close" onclick="closeModal('modal3')">
+              <i class="fas fa-times"></i>
+            </div>
+      
+            <h3 class="modal-title">תערוכת "המסע אל השמש" (לגילאי 3–7)</h3>
+      
+            <div class="modal-body" style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-color);">
+              <p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem;">
+                ☀️ חוויה סולארית לילדים סקרנים!
+              </p>
+      
+              <p style="margin-bottom: 1rem;">
+                בתערוכה "המסע אל השמש" הילדים יוצאים למסע אינטראקטיבי ומלא קסם בתוך מערכת השמש שלנו.
+              </p>
+      
+              <ul style="margin-bottom: 2rem; padding-right: 1.2rem; list-style: none;">
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-sun" style="position: absolute; right: 0; color: var(--primary-yellow);"></i>
+                  הכרת השמש וחשיבותה לקיום החיים על כדור הארץ
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-solar-panel" style="position: absolute; right: 0; color: var(--primary-orange);"></i>
+                  משחקים סולאריים והתנסות בבית הפועל כולו על אנרגיית שמש
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-rocket" style="position: absolute; right: 0; color: var(--primary-pink);"></i>
+                  דגמים מוחשיים של מערכת השמש – להכיר, לגעת, לשחק
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-flask" style="position: absolute; right: 0; color: var(--primary-blue);"></i>
+                  ניסויים במעבדה: מה יקרה אם נתקרב לשמש או נתרחק ממנה?
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-water" style="position: absolute; right: 0; color: var(--primary-teal);"></i>
+                  חקירת מצבי הצבירה של המים – ים, קרח, ואדים
+                </li>
+              </ul>
+      
+              <div style="font-size: 1rem; background: rgba(0,0,0,0.03); padding: 1rem 1.2rem; border-radius: 12px;">
+                <p style="margin-bottom: 0.5rem;"><strong>🎯 גיל מומלץ:</strong> 3–7</p>
+                <p style="margin-bottom: 0.5rem;"><strong>⏱ משך הפעילות:</strong> כשעה וחצי</p>
+                <p style="margin-bottom: 0.5rem;"><strong>🕒 סבבי פעילות:</strong> 09:30 / 11:30 / 13:30</p>
+                <p><strong>🥤 במקום:</strong> קיוסק עם נשנושים ושתייה להורים ולילדים</p>
+              </div>
+      
+              <p style="margin-top: 2rem; font-weight: 600; text-align: center; color: var(--primary-pink);">
+                🔎 פרטים נוספים ניתן למצוא באתר <a href="https://www.technoda.org.il/" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">הטכנודע</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</div>
     <script>
         // Initial Loading Animation
-        window.addEventListener('load', function() {
+// Initial Loading Animation
+// Initial Loading Animation
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('timeTravel').style.display = 'block';
+        
+        // Create time travel particles
+        createTimeParticles();
+        
+        // Create time travel objects
+        createTimeObjects();
+        
+        // After time travel animation completes
+        setTimeout(function() {
+            document.getElementById('timeTravel').style.display = 'none';
+            
+            // Make sure we're at the top of the page
+            window.scrollTo(0, 0);
+            
+            // Show neon overlay
+            const neonOverlay = document.getElementById('neonOverlay');
+            neonOverlay.style.display = 'block';
+            
+            // Generate stars in the header
+            createStars();
+            
+            // Create time bubbles in CTA section
+            createTimeBubbles();
+            
+            // Trigger the main content dissolve effect with neon overlay
             setTimeout(function() {
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('timeTravel').style.display = 'block';
+                const mainContent = document.getElementById('mainContentWrapper');
+                mainContent.classList.add('visible');
+                document.body.classList.remove('loading');
                 
-                // Create time travel particles
-                createTimeParticles();
-                
-                // Create time travel objects
-                createTimeObjects();
-                
-                // After time travel animation completes
+                // Start fading out the neon overlay
                 setTimeout(function() {
-                    document.getElementById('timeTravel').style.display = 'none';
-                    
-                    // Generate stars in the header
-                    createStars();
-                    
-                    // Create time bubbles in CTA section
-                    createTimeBubbles();
-                }, 4000);
-            }, 3000);
+                    neonOverlay.classList.add('fade-out');
+                }, 500);
+                
+                // Apply sequential fade-in to elements with neon glow effect
+                sequentialFadeIn();
+            }, 200);
+        }, 4000);
+    }, 3000);
+});
+
+// Function to apply sequential fade-in to elements with neon effect
+function sequentialFadeIn() {
+    const elements = document.querySelectorAll('header, section, footer');
+    
+    elements.forEach((element, index) => {
+        element.classList.add('fade-in-element');
+        
+        // Add temporary neon glow to text elements during fade-in
+        const textElements = element.querySelectorAll('h1, h2, h3, .countdown-number');
+        textElements.forEach(textEl => {
+            textEl.classList.add('neon-glow');
+            
+            // Remove the neon glow after animation completes
+            setTimeout(() => {
+                textEl.classList.remove('neon-glow');
+            }, 3000 + (index * 300));
         });
+        
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, 300 * (index + 1));
+    });
+}
+
+// Function to apply sequential fade-in to elements
+function sequentialFadeIn() {
+    const elements = document.querySelectorAll('header, section, footer');
+    
+    elements.forEach((element, index) => {
+        element.classList.add('fade-in-element');
+        
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, 300 * (index + 1)); // Each element appears with a 300ms delay after the previous one
+    });
+}
         
         // Create time particles
         function createTimeParticles() {
@@ -1644,19 +2281,19 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
         
         // Scroll Animation
-        function checkScrollAnimation() {
-            const elements = document.querySelectorAll('.scroll-animation');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementPosition < windowHeight - 50) {
-                    element.classList.add('active');
-                }
-            });
-        }
+// Scroll Animation
+function checkScrollAnimation() {
+    const elements = document.querySelectorAll('.scroll-animation:not(.fade-in-element)');
+    
+    elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
         
+        if (elementPosition < windowHeight - 50) {
+            element.classList.add('active');
+        }
+    });
+}
         window.addEventListener('scroll', checkScrollAnimation);
         window.addEventListener('load', () => {
             setTimeout(checkScrollAnimation, 4500);
@@ -1712,6 +2349,55 @@ setInterval(updateCountdown, 1000);
             musicIcon.classList.add('fa-volume-up');
         }
     }, { once: true });
+    // Always scroll to top when the dissolve effect starts
+document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+});
+// Modal functions
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'block';
+    
+    // ניתן טיפה זמן להצגת המודל לפני הפעלת האנימציה
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+    
+    // מניעת גלילה בדף הרקע
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('active');
+    
+    // נמתין עד שהאנימציה תסתיים לפני הסתרת המודל
+    setTimeout(() => {
+        modal.style.display = 'none';
+        // החזרת אפשרות הגלילה
+        document.body.style.overflow = 'auto';
+    }, 400);
+}
+
+// סגירת המודל בלחיצה על הרקע
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal(this.id);
+        }
+    });
+});
+
+// סגירת המודל בלחיצה על Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal').forEach(modal => {
+            if (modal.style.display === 'block') {
+                closeModal(modal.id);
+            }
+        });
+    }
+});
     </script>
 </body>
 </html>
