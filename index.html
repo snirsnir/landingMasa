@@ -1545,6 +1545,40 @@ body.loading {
     background: var(--primary-blue);
     transform: translateY(-50%) scale(1.1);
 }
+@media (max-width: 480px) {
+  .extra-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    text-align: right;
+  }
+
+  .extra-image {
+    width: 100%;
+    height: auto;
+    margin: 0 0 1rem 0;
+  }
+
+  .extra-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .info-btn {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 1rem;
+    align-self: flex-end;
+  }
+
+  .extra-item strong,
+  .extra-item p {
+    width: 100%;
+  }
+}
+
     </style>
 </head>
 <body class="loading">
@@ -1584,7 +1618,7 @@ body.loading {
                     <img src="https://media.getmood.io/warehouse/dynamic/217495.png" alt="טכנודע חדרה" class="logo">
                 </div>
                 <h1>טכנודע חדרה לוקח אתכם למסע במנהרת הזמן</h1>
-                <div class="event-date animate__animated animate__fadeInUp">הפנינג פסח 2025 • 14-17 באפריל • 09:00-16:00</div>
+                <div class="event-date animate__animated animate__fadeInUp">הפנינג פסח • 14-17 באפריל • 09:00-16:00</div>
                 <div class="countdown animate__animated animate__fadeIn animate__delay-1s">
                     <div class="countdown-item">
                         <div class="countdown-number" id="seconds">00</div>
@@ -1618,7 +1652,7 @@ body.loading {
             
             <section id="hero-section" class="hero scroll-animation">
                 <div class="timeline-node" style="top: 150px;"></div>
-                <h2 class="section-title">הטכנודע - המוזיאון הישראלי לרפואה ומדע חלל ומדע מזמין את כל ילדי ישראל</h2>
+                <h2 class="section-title">הטכנודע - המוזיאון הישראלי לרפואה ומדע מזמין את כל ילדי ישראל</h2>
                 <div class="hero-content">
                     <img src="https://media.getmood.io/warehouse/dynamic/608397.jpg" alt="מסע במנהרת הזמן" style="max-width: 100%; height: auto; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);">
                     <p><strong>בחול המועד פסח, יוכלו הילדים לחוות מסע בלתי נשכח דרך מנהרת הזמן, שם יפגשו את המדענים הגדולים בהיסטוריה ויגלו את ההמצאות ששינו את עולמנו.</strong> בתוכנית מגוון סדנאות הכוללות התנסויות מדעיות מעשיות, מולטימדיה מרתקת ומשחקי מחשב ורצפה נוסטלגיים.</p>
@@ -1654,10 +1688,10 @@ body.loading {
                 </div>
                 
                 <!-- כרטיס 4 - פארק המדע ומוזיאון המדע -->
-                <div class="activity-card activity-card-with-bg activity-bg-4 scroll-animation">
-                    <div class="activity-icon"><i class="fas fa-flask"></i></div>
-                    <h3>פארק המדע ומוזיאון המדע</h3>
-                    <p>גלו את הפיזיקה שמאחורי בורג ארכימדס, צלחות הקול הענקיות והפרחים הסולאריים. סיור מודרך מרתק עם ניסויים והדגמות אינטראקטיביות!</p>
+                <div class="activity-card activity-card-with-bg activity-bg-6 scroll-animation">
+                    <div class="activity-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>דיאלוג עם גדולי הממציאים</h3>
+                    <p>סדנה הכוללת הדגמות מרתקות וחידון אינטראקטיבי עם הדמויות שעיצבו את עולם המדע. היפגשו עם איינשטיין, דה וינצ'י, גלילאו ועוד ממציאים ומדענים מהעבר!</p>
                 </div>
                 
                 <!-- כרטיס 5 - משחקי רצפה של פעם -->
@@ -1668,10 +1702,10 @@ body.loading {
                 </div>
                 
                 <!-- כרטיס 6 - דיאלוג בזמן עם הממציאים הגדולים -->
-                <div class="activity-card activity-card-with-bg activity-bg-6 scroll-animation">
-                    <div class="activity-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>דיאלוג עם גדולי הממציאים</h3>
-                    <p>סדנה הכוללת הדגמות מרתקות וחידון אינטראקטיבי עם הדמויות שעיצבו את עולם המדע. היפגשו עם איינשטיין, דה וינצ'י, גלילאו ועוד ממציאים ומדענים מהעבר!</p>
+                <div class="activity-card activity-card-with-bg activity-bg-4 scroll-animation">
+                    <div class="activity-icon"><i class="fas fa-flask"></i></div>
+                    <h3>פארק המדע ומוזיאון המדע</h3>
+                    <p>גלו את הפיזיקה שמאחורי בורג ארכימדס, צלחות הקול הענקיות והפרחים הסולאריים. סיור מודרך מרתק עם ניסויים והדגמות אינטראקטיביות!</p>
                 </div>
             </section>
 
