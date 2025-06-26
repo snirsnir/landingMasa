@@ -1,0 +1,2422 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טכנודע חדרה - מסע במנהרת הזמן - קיץ 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap');
+        
+        :root {
+            --primary-blue: #4EA1D9;
+            --primary-teal: #47B9BC;
+            --primary-green: #85C54E;
+            --primary-yellow: #FFCB1A;
+            --primary-orange: #F36F23;
+            --primary-pink: #EE2768;
+            --primary-purple: #7768AF;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Heebo', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        /* Loader Animation */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loader {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            perspective: 1000px;
+        }
+        
+        .time-tunnel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--primary-blue),
+                var(--primary-teal),
+                var(--primary-green),
+                var(--primary-yellow),
+                var(--primary-orange),
+                var(--primary-pink),
+                var(--primary-purple),
+                var(--primary-blue)
+            );
+            animation: spin 2s linear infinite, expand 3s forwards 2s;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes expand {
+            0% { transform: scale(1); }
+            100% { transform: scale(30); opacity: 0; }
+        }
+        
+        .loading-text {
+            position: absolute;
+            bottom: -50px;
+            color: white;
+            font-size: 1.5rem;
+            white-space: nowrap;
+            animation: fadeInOut 3s linear infinite;
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Time Travel Entry Animation */
+        .time-travel-entry {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: none;
+            z-index: 9998;
+            overflow: hidden;
+        }
+        .main-site-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.main-site-btn a {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.main-site-btn a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+        .time-vortex {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(238, 39, 104, 0.8) 20%,
+                rgba(243, 111, 35, 0.7) 30%,
+                rgba(255, 203, 26, 0.6) 50%,
+                rgba(133, 197, 78, 0.5) 70%,
+                rgba(71, 185, 188, 0.4) 85%,
+                rgba(78, 161, 217, 0.3) 100%
+            );
+            box-shadow: 0 0 100px 50px rgba(255, 255, 255, 0.5);
+            animation: vortexExpand 4s forwards;
+        }
+        
+        @keyframes vortexExpand {
+            0% { 
+                width: 10px; 
+                height: 10px; 
+                border-radius: 50%;
+            }
+            70% { 
+                width: 200vw; 
+                height: 200vh; 
+                border-radius: 50%;
+            }
+            100% { 
+                width: 200vw; 
+                height: 200vh; 
+                border-radius: 0;
+            }
+        }
+        
+        .time-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: particleMove 3s linear forwards;
+        }
+        
+        @keyframes particleMove {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0);
+            }
+        }
+        
+        .time-travel-objects {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+        }
+        
+        .time-object {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+            animation: objectFloat 6s ease-in-out forwards;
+        }
+        
+        @keyframes objectFloat {
+            0% {
+                transform: translateZ(-1000px) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateZ(500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        /* Header */
+        header {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000, #1a1a2e);
+            overflow: hidden;
+        }
+        
+        .space-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1400/800') center/cover;
+            opacity: 0.2;
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+        
+        .time-ripples {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+        }
+        
+        .ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: rippleEffect 6s linear infinite;
+            opacity: 0;
+        }
+        
+        .ripple:nth-child(1) {
+            border-color: rgba(78, 161, 217, 0.7);
+            animation-delay: 0s;
+        }
+        
+        .ripple:nth-child(2) {
+            border-color: rgba(71, 185, 188, 0.7);
+            animation-delay: 1s;
+        }
+        
+        .ripple:nth-child(3) {
+            border-color: rgba(133, 197, 78, 0.7);
+            animation-delay: 2s;
+        }
+        
+        .ripple:nth-child(4) {
+            border-color: rgba(255, 203, 26, 0.7);
+            animation-delay: 3s;
+        }
+        
+        .ripple:nth-child(5) {
+            border-color: rgba(243, 111, 35, 0.7);
+            animation-delay: 4s;
+        }
+        
+        .ripple:nth-child(6) {
+            border-color: rgba(238, 39, 104, 0.7);
+            animation-delay: 5s;
+        }
+        
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.8;
+            }
+            100% {
+                width: 600px;
+                height: 600px;
+                opacity: 0;
+            }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 1rem;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .logo-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .logo {
+            width: 200px;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(90deg, 
+        var(--primary-blue), 
+        var(--primary-teal), 
+        var(--primary-green), 
+        var(--primary-yellow), 
+        var(--primary-orange), 
+        var(--primary-pink), 
+        var(--primary-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%;
+    animation: gradientShift 10s infinite;
+}
+        
+        @keyframes glowText {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+            100% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .event-date {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            color: var(--primary-yellow);
+            text-shadow: 0 0 10px rgba(255, 203, 26, 0.7);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: pulseLight 3s infinite alternate;
+        }
+        
+        @keyframes pulseLight {
+            0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+        }
+        
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-orange);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(243, 111, 35, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                var(--primary-orange), 
+                var(--primary-pink), 
+                var(--primary-purple), 
+                var(--primary-orange));
+            background-size: 400% 400%;
+            z-index: -1;
+            transition: all 0.6s ease;
+            animation: gradientMove 4s infinite;
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(243, 111, 35, 0.5);
+        }
+        
+        .btn:hover::before {
+            opacity: 0.9;
+        }
+        
+        .btn-large {
+            font-size: 1.5rem;
+            padding: 1.5rem 3rem;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* Main Content Sections */
+        main {
+            position: relative;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .timeline-indicator {
+            position: absolute;
+            top: 0;
+            left: 50px;
+            height: 100%;
+            width: 6px;
+            background: linear-gradient(to bottom, 
+                var(--primary-blue), 
+                var(--primary-teal), 
+                var(--primary-green), 
+                var(--primary-yellow), 
+                var(--primary-orange), 
+                var(--primary-pink), 
+                var(--primary-purple));
+            border-radius: 6px;
+            z-index: 1;
+        }
+        
+        .timeline-node {
+            position: absolute;
+            left: 53px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-purple);
+            font-size: 2.5rem;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-pink), var(--primary-purple));
+            margin: 1rem auto 0;
+            border-radius: 5px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+            z-index: 10;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                rgba(78, 161, 217, 0.1), 
+                rgba(71, 185, 188, 0.1), 
+                rgba(133, 197, 78, 0.1), 
+                rgba(255, 203, 26, 0.1), 
+                rgba(243, 111, 35, 0.1), 
+                rgba(238, 39, 104, 0.1), 
+                rgba(119, 104, 175, 0.1));
+            transform: rotate(45deg);
+            z-index: -1;
+            animation: gradientMove 10s linear infinite;
+        }
+        
+        .hero:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+        
+        .hero p {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        /* Activities Section */
+        .activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .activity-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, 
+                var(--primary-blue), 
+                var(--primary-teal), 
+                var(--primary-green), 
+                var(--primary-yellow), 
+                var(--primary-orange), 
+                var(--primary-pink), 
+                var(--primary-purple));
+            z-index: 1;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .activity-card:hover .activity-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .activity-icon {
+            font-size: 4rem;
+            color: var(--primary-teal);
+            margin-bottom: 1.5rem;
+            transition: all 0.5s ease;
+            display: block;
+        }
+        
+        .activity-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        .activity-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        
+        /* Info Section */
+        .info-section {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, transparent 50%, rgba(119, 104, 175, 0.1) 50%);
+            z-index: 0;
+        }
+        
+        .info-section h2 {
+            color: var(--primary-purple);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-icon {
+            margin-left: 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-orange);
+            background: rgba(243, 111, 35, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .info-text {
+            flex-grow: 1;
+        }
+        
+        .info-text h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+        }
+        
+        .info-text p {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+        
+        /* Extra Activities */
+        .extra-activities {
+            background: linear-gradient(135deg, rgba(238, 39, 104, 0.05), rgba(119, 104, 175, 0.05));
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .extra-activities::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/800/600') center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .extra-activities h2 {
+            color: var(--primary-pink);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .extra-list {
+            list-style-type: none;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .extra-item {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            transform: translateX(0);
+        }
+        
+        .extra-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .extra-icon {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-left: 1.5rem;
+            background: rgba(133, 197, 78, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .extra-item div {
+            flex-grow: 1;
+        }
+        
+        .extra-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+        }
+        
+        .extra-item p {
+            font-size: 1.1rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .time-bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 8s infinite;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100%) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100%) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #212529, #343a40);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/600') center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            font-size: 1.8rem;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-icon:hover {
+            color: var(--primary-yellow);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Scroll Animation */
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        
+        .scroll-animation.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .activities {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .time-ripples {
+                width: 400px;
+                height: 400px;
+            }
+            
+            @keyframes rippleEffect {
+                0% {
+                    width: 0;
+                    height: 0;
+                    opacity: 0.8;
+                }
+                100% {
+                    width: 400px;
+                    height: 400px;
+                    opacity: 0;
+                }
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .activities {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-indicator {
+                left: 30px;
+            }
+            
+            .timeline-node {
+                left: 33px;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+            }
+            
+            .countdown-number {
+                font-size: 2.2rem;
+            }
+            
+            .btn-large {
+                font-size: 1.2rem;
+                padding: 1.2rem 2rem;
+            }
+            
+            .hero, .info-section, .extra-activities, .cta-section {
+                padding: 2rem;
+            }
+            
+            .time-ripples {
+                width: 300px;
+                height: 300px;
+            }
+            
+            @keyframes rippleEffect {
+                0% {
+                    width: 0;
+                    height: 0;
+                    opacity: 0.8;
+                }
+                100% {
+                    width: 300px;
+                    height: 300px;
+                    opacity: 0;
+                }
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content {
+                padding: 4rem 0.5rem;
+            }
+            
+            .event-date {
+                font-size: 1.2rem;
+            }
+            
+            .countdown-item {
+                padding: 1rem;
+                min-width: 70px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero h2, .info-section h2, .extra-activities h2, .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .activity-card h3 {
+                font-size: 1.4rem;
+            }
+            
+            .btn {
+                padding: 1rem 1.8rem;
+                font-size: 1rem;
+            }
+            
+            .scroll-down {
+                bottom: 15px;
+            }
+            
+            .time-ripples {
+                width: 250px;
+                height: 250px;
+            }
+            
+            @keyframes rippleEffect {
+                0% {
+                    width: 0;
+                    height: 0;
+                    opacity: 0.8;
+                }
+                100% {
+                    width: 250px;
+                    height: 250px;
+                    opacity: 0;
+                }
+            }
+        }
+        .music-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-purple);
+}
+
+.music-btn i {
+    font-size: 1.2rem;
+}
+/* Dissolve Effect for Main Content */
+/* Dissolve Effect with 80s Neon Purple */
+body.loading {
+    overflow: hidden;
+}
+
+#mainContentWrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2.5s ease-in-out, visibility 0s 0.5s;
+    position: relative;
+}
+
+#mainContentWrapper.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 2.5s ease-in-out;
+}
+
+/* 80s style neon overlay */
+#neonOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(128, 0, 255, 0.8), rgba(200, 0, 255, 0.6), rgba(255, 0, 255, 0.8));
+    z-index: 999;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#neonOverlay.fade-out {
+    opacity: 0;
+}
+
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    position: relative;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Neon glow effect */
+.neon-glow {
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.8),
+                 0 0 10px rgba(255, 0, 255, 0.5),
+                 0 0 15px rgba(128, 0, 255, 0.5),
+                 0 0 20px rgba(128, 0, 255, 0.3);
+}
+/* הוסף את זה לקובץ ה-CSS */
+/* סגנון לכרטיסי פעילות עם תמונת רקע */
+/* סגנונות משותפים לכל כרטיסי הפעילויות עם רקע תמונה */
+/* סגנונות משותפים לכל כרטיסי הפעילויות עם רקע תמונה */
+.activity-card-with-bg {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+.activity-card-with-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 20px;
+}
+
+.activity-card-with-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, 
+        var(--primary-blue), 
+        var(--primary-teal), 
+        var(--primary-green), 
+        var(--primary-yellow), 
+        var(--primary-orange), 
+        var(--primary-pink), 
+        var(--primary-purple));
+    z-index: 2;
+    border-radius: 20px 20px 0 0;
+}
+
+.activity-card-with-bg h3, 
+.activity-card-with-bg p {
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+.activity-card-with-bg .activity-icon {
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+/* עדכון לסגנון הטקסט בכרטיסיות להוספת stroke שחור */
+.activity-card-with-bg h3 {
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.9),
+        1px -1px 0 rgba(0, 0, 0, 0.9),
+        -1px 1px 0 rgba(0, 0, 0, 0.9),
+        1px 1px 0 rgba(0, 0, 0, 0.9),
+        0 2px 4px rgba(0, 0, 0, 0.9);
+    font-weight: 700;
+}
+
+.activity-card-with-bg p {
+    color: white;
+    position: relative;
+    z-index: 2;
+    text-shadow: 
+         -1.5px -1.5px 0 rgba(0, 0, 0, 1),
+         1.5px -1.5px 0 rgba(0, 0, 0, 1),
+         -1.5px 1.5px 0 rgba(0, 0, 0, 1),
+         1.5px 1.5px 0 rgba(0, 0, 0, 1),
+         0 3px 5px rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+.activity-card-with-bg .activity-icon {
+    color: white;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* סגנון ספציפי עבור כרטיס 1 - סדנת כתב (כחול) */
+.activity-bg-1 {
+    background-image: url('1.jpg');
+}
+
+.activity-bg-1::before {
+    background: linear-gradient(135deg, 
+        rgba(78, 161, 217, 0.95), /* --primary-blue */
+        rgba(78, 161, 217, 0.75));
+}
+
+/* סגנון ספציפי עבור כרטיס 2 - התפתחות המיקרוסקופ (טורקיז) */
+.activity-bg-2 {
+    background-image: url('2.jpg');
+}
+
+.activity-bg-2::before {
+    background: linear-gradient(135deg, 
+        rgba(71, 185, 188, 0.95), /* --primary-teal */
+        rgba(71, 185, 188, 0.75));
+}
+
+/* סגנון ספציפי עבור כרטיס 3 - משחקי מחשב (סגול וורוד) */
+.activity-bg-3 {
+    background-image: url('3.jpg');
+}
+
+.activity-bg-3::before {
+    background: linear-gradient(135deg, 
+        rgba(238, 39, 104, 0.95), /* --primary-pink */
+        rgba(119, 104, 175, 0.75)); /* --primary-purple */
+}
+
+/* סגנון ספציפי עבור כרטיס 4 - פארק המדע (צהוב) */
+.activity-bg-4 {
+    background-image: url('4.jpg');
+}
+
+.activity-bg-4::before {
+    background: linear-gradient(135deg, 
+        rgba(255, 203, 26, 0.95), /* --primary-yellow */
+        rgba(255, 203, 26, 0.75));
+}
+
+/* סגנון ספציפי עבור כרטיס 5 - משחקי רצפה (כתום) */
+.activity-bg-5 {
+    background-image: url('5.jpg');
+}
+
+.activity-bg-5::before {
+    background: linear-gradient(135deg, 
+        rgba(243, 111, 35, 0.95), /* --primary-orange */
+        rgba(243, 111, 35, 0.75));
+}
+
+/* סגנון ספציפי עבור כרטיס 6 - דיאלוג בזמן (ירוק) */
+.activity-bg-6 {
+    background-image: url('6.jpg');
+}
+
+.activity-bg-6::before {
+    background: linear-gradient(135deg, 
+        rgba(133, 197, 78, 0.95), /* --primary-green */
+        rgba(133, 197, 78, 0.75));
+}
+/* Style for Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    overflow-y: auto;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.4s ease-out;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-orange);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--primary-pink);
+    transform: rotate(90deg);
+}
+
+.modal-title {
+    font-size: 2rem;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--primary-teal);
+}
+
+.modal-body {
+    margin-top: 20px;
+}
+
+/* Updated Extra Activities Section with Images */
+.extra-item {
+    position: relative;
+    padding-right: 80px;
+}
+
+.extra-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-left: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+}
+
+.extra-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.extra-item:hover .extra-image img {
+    transform: scale(1.0);
+}
+
+
+.info-btn {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-teal);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.info-btn:hover {
+    background: var(--primary-blue);
+    transform: translateY(-50%) scale(1.1);
+}
+@media (max-width: 480px) {
+  .extra-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    text-align: right;
+  }
+
+  .extra-image {
+    width: 100%;
+    height: auto;
+    margin: 0 0 1rem 0;
+  }
+
+  .extra-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .info-btn {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 1rem;
+    align-self: flex-end;
+  }
+
+  .extra-item strong,
+  .extra-item p {
+    width: 100%;
+  }
+}
+
+    </style>
+</head>
+<body class="loading">
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="time-tunnel"></div>
+        </div>
+        <div class="loading-text">טוענים את מנהרת הזמן...</div>
+    </div>
+    
+    <!-- Time Travel Entry Animation -->
+    <div class="time-travel-entry" id="timeTravel">
+        <div class="time-vortex"></div>
+        <div class="time-particles" id="timeParticles"></div>
+        <div class="time-travel-objects" id="travelObjects"></div>
+    </div>
+    <div id="neonOverlay"></div>
+    <div id="mainContentWrapper">
+    <header>
+        <div class="space-background"></div>
+        <div class="stars" id="stars"></div>
+        <div class="time-ripples">
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+        </div>
+        <div class="main-site-btn">
+            <a href="https://www.technoda.org.il/" target="_blank" rel="noopener noreferrer">לאתר הטכנודע</a>
+        </div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="https://media.getmood.io/warehouse/dynamic/217495.png" alt="טכנודע חדרה" class="logo">
+                </div>
+                <h1>טכנודע חדרה לוקח אתכם למסע במנהרת הזמן</h1>
+                <div class="event-date animate__animated animate__fadeInUp">הפנינג קיץ • 1-31 לאוגוסט • 09:00-16:00</div>
+                <div class="countdown animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">שניות</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">דקות</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">שעות</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">ימים</div>
+                    </div>
+                </div>
+                <a href="#hero-section" class="btn btn-large animate__animated animate__pulse animate__infinite animate__slow">למידע נוסף ורכישת כרטיסים</a>
+                <div class="scroll-down">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="timeline-indicator"></div>
+            
+            <section id="hero-section" class="hero scroll-animation">
+                <div class="timeline-node" style="top: 150px;"></div>
+                <h2 class="section-title">הטכנודע - המוזיאון הישראלי לרפואה ומדע מזמין את כל ילדי ישראל</h2>
+                <div class="hero-content">
+                    <img src="https://media.getmood.io/warehouse/dynamic/608397.jpg" alt="מסע במנהרת הזמן" style="max-width: 100%; height: auto; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);">
+                    <p><strong>בחופשת הקיץ, יוכלו הילדים לחוות מסע בלתי נשכח דרך מנהרת הזמן, שם יפגשו את המדענים הגדולים בהיסטוריה ויגלו את ההמצאות ששינו את עולמנו.</strong> בתוכנית מגוון סדנאות הכוללות התנסויות מדעיות מעשיות, מולטימדיה מרתקת ומשחקי מחשב ורצפה נוסטלגיים.</p>
+                    <a href="https://web.attractinet.co.il/TechnoDa/?jumpTo=Purches&lang=he" target="_blank" rel="noopener noreferrer" class="btn">לרכישת כרטיסים</a>
+                </div>
+            </section>
+
+            <section class="timeline-section scroll-animation">
+                <div class="timeline-node" style="top: 120px;"></div>
+                <h2 class="section-title">הפעילויות שלנו</h2>
+            </section>
+            
+            <section class="activities">
+                <!-- כרטיס 1 - סדנת כתב -->
+                <div class="activity-card activity-card-with-bg activity-bg-1 scroll-animation">
+                    <div class="activity-icon"><i class="fas fa-scroll"></i></div>
+                    <h3>סדנת כתב</h3>
+                    <p>איך כתבו והעבירו מסרים מהעת העתיקה ועד ימינו? בואו לגלות את התפתחות הכתב לאורך ההיסטוריה ולהתנסות בכתיבה בסגנונות שונים!</p>
+                </div>
+                
+                <!-- כרטיס 2 - התפתחות המיקרוסקופ -->
+                <div class="activity-card activity-card-with-bg activity-bg-2 scroll-animation">
+                    <div class="activity-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>התפתחות המיקרוסקופ</h3>
+                    <p>מעקב אחר התפתחות כלי חיוני בעולם המדע שמשמש את חוקרי המדע והרפואה מאז ועד היום. צפו בדגימות מרתקות דרך מיקרוסקופים מתקופות שונות!</p>
+                </div>
+                
+                <!-- כרטיס 3 - משחקי מחשב של פעם ושל היום -->
+                <div class="activity-card activity-card-with-bg activity-bg-3 scroll-animation">
+                    <div class="activity-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>משחקי מחשב של פעם ושל היום</h3>
+                    <p>חוויית גיימינג נוסטלגית ומלהיבה שתאפשר לכם להכיר את התפתחות משחקי המחשב לאורך השנים - מפאקמן ועד המשחקים המתקדמים של ימינו!</p>
+                </div>
+                
+                <!-- כרטיס 4 - פארק המדע ומוזיאון המדע -->
+                <div class="activity-card activity-card-with-bg activity-bg-6 scroll-animation">
+                    <div class="activity-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>דיאלוג עם גדולי הממציאים</h3>
+                    <p>סדנה הכוללת הדגמות מרתקות וחידון אינטראקטיבי עם הדמויות שעיצבו את עולם המדע. היפגשו עם איינשטיין, דה וינצ'י, גלילאו ועוד ממציאים ומדענים מהעבר!</p>
+                </div>
+                
+                <!-- כרטיס 5 - משחקי רצפה של פעם -->
+                <div class="activity-card activity-card-with-bg activity-bg-5 scroll-animation">
+                    <div class="activity-icon"><i class="fas fa-dice"></i></div>
+                    <h3>משחקי רצפה של פעם</h3>
+                    <p>התנסות במשחקי ילדות נוסטלגיים שכולם אוהבים ומכירים מימים עברו. קלאס, גומי, חמש אבנים ועוד משחקים שהעבירו את הזמן בהנאה לפני עידן המסכים!</p>
+                </div>
+                
+                <!-- כרטיס 6 - דיאלוג בזמן עם הממציאים הגדולים -->
+                <div class="activity-card activity-card-with-bg activity-bg-4 scroll-animation">
+                    <div class="activity-icon"><i class="fas fa-flask"></i></div>
+                    <h3>פארק המדע ומוזיאון המדע</h3>
+                    <p>גלו את הפיזיקה שמאחורי בורג ארכימדס, צלחות הקול הענקיות והפרחים הסולאריים. סיור מודרך מרתק עם ניסויים והדגמות אינטראקטיביות!</p>
+                </div>
+            </section>
+
+            <section class="info-section scroll-animation">
+                <div class="timeline-node" style="top: 120px;"></div>
+                <h2 class="section-title">מידע חשוב</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="far fa-calendar-alt"></i></div>
+                        <div class="info-text">
+                            <h3>תאריכים</h3>
+                            <p>1-31 לאוגוסט 2025 (חופשת הקיץ)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="far fa-clock"></i></div>
+                        <div class="info-text">
+                            <h3>שעות פעילות</h3>
+                            <p>09:00-16:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-hourglass-half"></i></div>
+                        <div class="info-text">
+                            <h3>משך הפעילות</h3>
+                            <p>כ-4 שעות</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-coins"></i></div>
+                        <div class="info-text">
+                            <h3>מחיר</h3>
+                            <p>70 ₪ לילד, 35 ₪ למבוגר</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-text">
+                            <h3>כתובת</h3>
+                            <p>רח' הרב ניסים 2, גבעת אולגה, חדרה</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="info-text">
+                            <h3>טלפון</h3>
+                            <p>04-6333505</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="extra-activities scroll-animation">
+                <div class="timeline-node" style="top: 120px;"></div>
+                <h2 class="section-title">פעילויות נוספות במהלך הביקור (בתשלום נוסף)</h2>
+                <ul class="extra-list">
+                    <!-- מקום ראשון: מוזיאון הרפואה -->
+                    <li class="extra-item">
+                      <div class="extra-image">
+                        <img src="8.jpg" alt="מוזיאון הרפואה">
+                      </div>
+                      <div>
+                        <strong>כניסה למוזיאון הרפואה</strong>
+                        <p>מסלול המוח או מסלול הלב – 70 ₪ למשתתף. חוויה אינטראקטיבית עם הדמיות תלת-ממדיות ומוצגים מרתקים!</p>
+                      </div>
+                      <button class="info-btn" onclick="openModal('modal2')">
+                        <i class="fas fa-info"></i>
+                      </button>
+                    </li>
+                  
+                    <!-- מקום שני: תערוכה לקטנטנים -->
+                    <li class="extra-item">
+                      <div class="extra-image">
+                        <img src="9.jpg" alt="תערוכה לקטנטנים">
+                      </div>
+                      <div>
+                        <strong>תערוכה לקטנטנים (גילאי 3-7)</strong>
+<p>"אליסה בארץ הפלאות"! מחיר הורה וילד 100 ₪ יחד. פעילות חווייתית המותאמת במיוחד לגיל הרך.</p>
+                      </div>
+                      <button class="info-btn" onclick="openModal('modal3')">
+                        <i class="fas fa-info"></i>
+                      </button>
+                    </li>
+                  
+                    <!-- מקום שלישי: מופע פלנטריום -->
+                    <li class="extra-item">
+                      <div class="extra-image">
+                        <img src="7.jpg" alt="מופע פלנטריום">
+                      </div>
+                      <div>
+                        <strong>מופע פלנטריום מרתק + כניסה למצפה הכוכבים</strong>
+                        <p>טלסקופים, כוכבים וסודות היקום! – 35 ₪ למשתתף.</p>
+                      </div>
+                      <button class="info-btn" onclick="openModal('modal1')">
+                        <i class="fas fa-info"></i>
+                      </button>
+                    </li>
+                  </ul>
+            </section>
+
+            <section class="cta-section scroll-animation">
+                <div class="timeline-node" style="top: 120px;"></div>
+                <div class="time-bubbles" id="timeBubbles"></div>
+                <div class="cta-content">
+                    <h2 class="section-title" style="
+    color: transparent;
+    -webkit-text-stroke: 1.5px white;
+    text-stroke: 1.5px white;
+    text-shadow: 0 0 10px rgba(255, 221, 0, 0.9), 0 0 20px rgba(255, 221, 0, 0.5);
+">
+    הצטרפו אלינו למסע במנהרת הזמן!
+</h2>
+
+                    <p>חוויה בלתי נשכחת לכל המשפחה, שתשלב למידה משמעותית עם כיף והנאה בקיץ. אל תפספסו את ההזדמנות להיכנס למנהרת הזמן ולפגוש את גדולי המדע והממציאים!</p>
+                    <a href="https://web.attractinet.co.il/TechnoDa/?jumpTo=Purches&lang=he" target="_blank" rel="noopener noreferrer" class="btn btn-large">לרכישת כרטיסים עכשיו</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="contact-info">
+                    <p>טכנודע חדרה - המוזיאון הישראלי לרפואה, חלל ומדע</p>
+                    <p>רח' הרב ניסים 2, גבעת אולגה, חדרה</p>
+                    <p>טלפון: 04-6333505</p>
+                    <p><a href="http://technoda.org.il/" target="_blank" style="color: var(--primary-yellow); text-decoration: none;">technoda.org.il</a></p>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/Technoda" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/technoda.hadera/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@technoda1" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div class="copyright">
+                    &copy; טכנודע חדרה | כל הזכויות שמורות
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </footer>
+    <audio id="background-music" loop>
+        <source src="1.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="music-toggle" class="music-btn">
+        <i class="fas fa-volume-mute" id="music-icon"></i>
+    </button>
+    <!-- Modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content" style="position: relative; overflow: hidden;">
+          
+          <!-- רקע שקוף עם תמונה -->
+          <div style="
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('7.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+          "></div>
+      
+          <!-- תוכן המודל -->
+          <div style="position: relative; z-index: 1;">
+            <div class="modal-close" onclick="closeModal('modal1')">
+              <i class="fas fa-times"></i>
+            </div>
+      
+            <h3 class="modal-title">מופע פלנטריום מרתק + כניסה למצפה הכוכבים</h3>
+      
+            <div class="modal-body" style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-color);">
+              <p style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.2rem;">
+                📢 הזמנה לחוויה אסטרונומית בלתי נשכחת
+              </p>
+      
+              <p style="margin-bottom: 0.8rem;">
+                הצטרפו אלינו למופע הפלנטריום:
+                <span style="font-weight: 600; color: var(--primary-blue); display: block; margin-top: 0.3rem;">
+                  "מחתיכת זכוכית ועד לטלסקופ"
+                </span>
+                מסע ויזואלי מרתק אל עומק היקום והכוכבים.
+              </p>
+      
+              <ul style="margin-top: 1.5rem; padding-right: 1.5rem; list-style: none;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-right: 1.2rem;">
+                  <i class="fas fa-star" style="color: var(--primary-blue); position: absolute; right: 0;"></i>
+                  תגליותיהם של גלילאו, ניוטון והאבל – וההשפעה על האנושות
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-right: 1.2rem;">
+                  <i class="fas fa-video" style="color: var(--primary-teal); position: absolute; right: 0;"></i>
+                  הקרנת סרט בפלנטריום – חוויה קולנועית בין-כוכבית
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-right: 1.2rem;">
+                  <i class="fas fa-tools" style="color: var(--primary-green); position: absolute; right: 0;"></i>
+                  סדנת הרכבת טלסקופ – שילוב של מדע, יצירה ודמיון
+                </li>
+              </ul>
+      
+              <div style="margin-top: 2rem; font-size: 1rem; background: rgba(0,0,0,0.03); padding: 1rem 1.2rem; border-radius: 12px;">
+                <p style="margin-bottom: 0.5rem;"><strong>🗓 מתי:</strong> חופשת הקיץ</p>
+                <p style="margin-bottom: 0.5rem;"><strong>⏱ משך הפעילות:</strong> כ־40 דקות</p>
+                <p><strong>👨‍👩‍👧‍👦 גיל מומלץ:</strong> 8 ומעלה</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div id="modal2" class="modal">
+        <div class="modal-content" style="position: relative; overflow: hidden;">
+          
+          <!-- רקע שקוף עם תמונה -->
+          <div style="
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('8.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+          "></div>
+      
+          <!-- תוכן המודל -->
+          <div style="position: relative; z-index: 1;">
+            <div class="modal-close" onclick="closeModal('modal2')">
+              <i class="fas fa-times"></i>
+            </div>
+      
+            <h3 class="modal-title">כניסה למוזיאון הרפואה</h3>
+      
+            <div class="modal-body" style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-color);">
+              <p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem;">
+                🏥 המוזיאון הישראלי לרפואה ומדע — חוויה אינטראקטיבית פורצת דרך!
+              </p>
+      
+              <p style="margin-bottom: 1rem;">
+                לראשונה בישראל — מוזיאון ייחודי שמחבר בין מדע, רפואה וטכנולוגיה. מה מחכה לכם?
+              </p>
+      
+              <ul style="margin-bottom: 2rem; padding-right: 1.2rem; list-style: none;">
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-microscope" style="position: absolute; right: 0; color: var(--primary-blue);"></i>
+                  6 תערוכות מדהימות עם מעל 120 מיצגים אינטראקטיביים על גוף האדם והרפואה
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-user-nurse" style="position: absolute; right: 0; color: var(--primary-teal);"></i>
+                  חדרי ניתוח עם סימולטורים אנושיים: החלפת מסתם בלב, ברונכוסקופיה, הנשמות ועוד
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-brain" style="position: absolute; right: 0; color: var(--primary-purple);"></i>
+                  משחק בכדור בכוח המחשבה, מקרה בלשי גנטי, ודגם DNA ענקי בגובה 3 קומות!
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-route" style="position: absolute; right: 0; color: var(--primary-green);"></i>
+                  שני מסלולי סיור מרתקים: <strong>“לגעת בלב”</strong> ו־<strong>“המוח הגמיש”</strong>, כל אחד עם 3 תערוכות
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
+                  <i class="fas fa-user-friends" style="position: absolute; right: 0; color: var(--primary-orange);"></i>
+                  הסיור בקבוצות קטנות ובליווי מדריך צמוד
+                </li>
+              </ul>
+      
+              <div style="font-size: 1rem; background: rgba(0,0,0,0.03); padding: 1rem 1.2rem; border-radius: 12px;">
+                <p style="margin-bottom: 0.5rem;"><strong>⏱ משך הפעילות:</strong> משתנה לפי המסלול</p>
+                <p><strong>👨‍👩‍👧‍👦 גיל מומלץ:</strong> מגיל 8 ומעלה</p>
+              </div>
+      
+              <p style="margin-top: 2rem; font-weight: 600; text-align: center; color: var(--primary-pink);">
+                🔎 פרטים נוספים ניתן למצוא באתר <a href="https://www.technoda.org.il/" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">הטכנודע</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div id="modal3" class="modal">
+        <div class="modal-content" style="position: relative; overflow: hidden;">
+          
+          <!-- רקע שקוף עם תמונה -->
+          <div style="
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('9.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+          "></div>
+      
+          <!-- תוכן המודל -->
+          <div style="position: relative; z-index: 1;">
+            <div class="modal-close" onclick="closeModal('modal3')">
+              <i class="fas fa-times"></i>
+            </div>
+      
+            <h3 class="modal-title">תערוכת "אליסה בארץ הפלאות" (לגילאי 3–7)</h3>
+      
+            <div class="modal-body" style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-color);">
+<p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem;">
+  🐰 חוויה קסומה לילדים סקרנים!
+</p>
+
+<p style="margin-bottom: 1rem;">
+  שעונים ממהרים⏱, מראות מדברות, מנהרות מוארות וארנב קטן שלא מפסיק לרוץ🐰. אצלנו בארץ הפלאות הכל יכול להיות.
+</p>
+
+<p style="margin-bottom: 1rem;">
+  אליסה תיקח אתכם למסע בעקבות צורות וגופים הנדסיים שנשכחו בארץ הפלאות. אם תעקבו אחרי הסימנים, תגלו צורות קסומות ומשימות מרתקות.
+</p>
+
+<p style="margin-bottom: 2rem;">
+  כדי לחזור הביתה תצטרכו לעבור במבוך של מלכת הלבבות ולהחזיר לה את התיבה האבודה.
+</p>
+      
+              <div style="font-size: 1rem; background: rgba(0,0,0,0.03); padding: 1rem 1.2rem; border-radius: 12px;">
+                <p style="margin-bottom: 0.5rem;"><strong>🎯 גיל מומלץ:</strong> 3–7</p>
+                <p style="margin-bottom: 0.5rem;"><strong>⏱ משך הפעילות:</strong> כשעה וחצי</p>
+                <p style="margin-bottom: 0.5rem;"><strong>🕒 סבבי פעילות:</strong> 09:30 / 11:30 / 13:30</p>
+                <p><strong>🥤 במקום:</strong> קיוסק עם נשנושים ושתייה להורים ולילדים</p>
+              </div>
+      
+              <p style="margin-top: 2rem; font-weight: 600; text-align: center; color: var(--primary-pink);">
+                🔎 פרטים נוספים ניתן למצוא באתר <a href="https://www.technoda.org.il/" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">הטכנודע</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</div>
+    <script>
+        // Initial Loading Animation
+// Initial Loading Animation
+// Initial Loading Animation
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('timeTravel').style.display = 'block';
+        
+        // Create time travel particles
+        createTimeParticles();
+        
+        // Create time travel objects
+        createTimeObjects();
+        
+        // After time travel animation completes
+        setTimeout(function() {
+            document.getElementById('timeTravel').style.display = 'none';
+            
+            // Make sure we're at the top of the page
+            window.scrollTo(0, 0);
+            
+            // Show neon overlay
+            const neonOverlay = document.getElementById('neonOverlay');
+            neonOverlay.style.display = 'block';
+            
+            // Generate stars in the header
+            createStars();
+            
+            // Create time bubbles in CTA section
+            createTimeBubbles();
+            
+            // Trigger the main content dissolve effect with neon overlay
+            setTimeout(function() {
+                const mainContent = document.getElementById('mainContentWrapper');
+                mainContent.classList.add('visible');
+                document.body.classList.remove('loading');
+                
+                // Start fading out the neon overlay
+                setTimeout(function() {
+                    neonOverlay.classList.add('fade-out');
+                }, 500);
+                
+                // Apply sequential fade-in to elements with neon glow effect
+                sequentialFadeIn();
+            }, 200);
+        }, 4000);
+    }, 3000);
+});
+
+// Function to apply sequential fade-in to elements with neon effect
+function sequentialFadeIn() {
+    const elements = document.querySelectorAll('header, section, footer');
+    
+    elements.forEach((element, index) => {
+        element.classList.add('fade-in-element');
+        
+        // Add temporary neon glow to text elements during fade-in
+        const textElements = element.querySelectorAll('h1, h2, h3, .countdown-number');
+        textElements.forEach(textEl => {
+            textEl.classList.add('neon-glow');
+            
+            // Remove the neon glow after animation completes
+            setTimeout(() => {
+                textEl.classList.remove('neon-glow');
+            }, 3000 + (index * 300));
+        });
+        
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, 300 * (index + 1));
+    });
+}
+
+// Function to apply sequential fade-in to elements
+function sequentialFadeIn() {
+    const elements = document.querySelectorAll('header, section, footer');
+    
+    elements.forEach((element, index) => {
+        element.classList.add('fade-in-element');
+        
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, 300 * (index + 1)); // Each element appears with a 300ms delay after the previous one
+    });
+}
+        
+        // Create time particles
+        function createTimeParticles() {
+            const particlesContainer = document.getElementById('timeParticles');
+            const particleCount = 100;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.top = `${posY}%`;
+                particle.style.left = `${posX}%`;
+                
+                // Random direction
+                const dirX = (Math.random() - 0.5) * 200;
+                const dirY = (Math.random() - 0.5) * 200;
+                particle.style.setProperty('--x', `${dirX}%`);
+                particle.style.setProperty('--y', `${dirY}%`);
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 3}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Create time travel objects
+        function createTimeObjects() {
+            const objectsContainer = document.getElementById('travelObjects');
+            const objectsCount = 15;
+            const icons = [
+                'fa-microscope', 'fa-lightbulb', 'fa-flask', 'fa-atom', 
+                'fa-brain', 'fa-dna', 'fa-rocket', 'fa-satellite', 
+                'fa-telescope', 'fa-gamepad', 'fa-robot', 'fa-scroll',
+                'fa-clock', 'fa-compass', 'fa-book'
+            ];
+            
+            for (let i = 0; i < objectsCount; i++) {
+                const timeObject = document.createElement('div');
+                timeObject.classList.add('time-object');
+                
+                // Create icon
+                const icon = document.createElement('i');
+                icon.classList.add('fas', icons[i % icons.length]);
+                icon.style.fontSize = '50px';
+                icon.style.color = getRandomColor();
+                
+                timeObject.appendChild(icon);
+                
+                // Random position
+                const posX = Math.random() * 80 + 10;
+                const posY = Math.random() * 80 + 10;
+                timeObject.style.top = `${posY}%`;
+                timeObject.style.left = `${posX}%`;
+                
+                // Random delay
+                timeObject.style.animationDelay = `${Math.random() * 2}s`;
+                
+                objectsContainer.appendChild(timeObject);
+            }
+        }
+        
+        // Create stars in header
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                star.style.top = `${posY}%`;
+                star.style.left = `${posX}%`;
+                
+                // Random delay
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Create time bubbles
+        function createTimeBubbles() {
+            const bubblesContainer = document.getElementById('timeBubbles');
+            const bubbleCount = 20;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                
+                // Random size
+                const size = Math.random() * 50 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math.random() * 100;
+                bubble.style.left = `${posX}%`;
+                bubble.style.bottom = '-50px';
+                
+                // Random speed
+                const speed = Math.random() * 10 + 5;
+                bubble.style.animationDuration = `${speed}s`;
+                
+                // Random delay
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+        
+        // Get random color from brand colors
+        function getRandomColor() {
+            const colors = [
+                '#4EA1D9', '#47B9BC', '#85C54E', 
+                '#FFCB1A', '#F36F23', '#EE2768', '#7768AF'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Countdown Timer
+        function updateCountdown() {
+    const eventDate = new Date('August 1, 2025 09:00:00').getTime();
+    const now = new Date().getTime();
+    const timeLeft = eventDate - now;
+    
+    if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').innerText = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+    }
+}
+
+updateCountdown();
+// שינוי עדכון הספירה לאחור לכל שנייה במקום כל דקה
+setInterval(updateCountdown, 1000);
+        
+        // Scroll Animation
+// Scroll Animation
+function checkScrollAnimation() {
+    const elements = document.querySelectorAll('.scroll-animation:not(.fade-in-element)');
+    
+    elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementPosition < windowHeight - 50) {
+            element.classList.add('active');
+        }
+    });
+}
+        window.addEventListener('scroll', checkScrollAnimation);
+        window.addEventListener('load', () => {
+            setTimeout(checkScrollAnimation, 4500);
+        });
+        
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Scroll down button
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+        const backgroundMusic = document.getElementById('background-music');
+    const musicToggle = document.getElementById('music-toggle');
+    const musicIcon = document.getElementById('music-icon');
+    let isMusicPlaying = false;
+    
+    // נמוך את עוצמת השמע
+    backgroundMusic.volume = 0.2;
+    
+    musicToggle.addEventListener('click', function() {
+        if (isMusicPlaying) {
+            backgroundMusic.pause();
+            musicIcon.classList.remove('fa-volume-up');
+            musicIcon.classList.add('fa-volume-mute');
+        } else {
+            backgroundMusic.play();
+            musicIcon.classList.remove('fa-volume-mute');
+            musicIcon.classList.add('fa-volume-up');
+        }
+        isMusicPlaying = !isMusicPlaying;
+    });
+    
+    // נגן מוזיקה רק לאחר אינטראקציה של המשתמש עם העמוד
+    document.addEventListener('click', function() {
+        if (!isMusicPlaying) {
+            backgroundMusic.play().catch(error => {
+                console.log('Auto-play was prevented');
+            });
+            isMusicPlaying = true;
+            musicIcon.classList.remove('fa-volume-mute');
+            musicIcon.classList.add('fa-volume-up');
+        }
+    }, { once: true });
+    // Always scroll to top when the dissolve effect starts
+document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+});
+// Modal functions
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'block';
+    
+    // ניתן טיפה זמן להצגת המודל לפני הפעלת האנימציה
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+    
+    // מניעת גלילה בדף הרקע
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('active');
+    
+    // נמתין עד שהאנימציה תסתיים לפני הסתרת המודל
+    setTimeout(() => {
+        modal.style.display = 'none';
+        // החזרת אפשרות הגלילה
+        document.body.style.overflow = 'auto';
+    }, 400);
+}
+
+// סגירת המודל בלחיצה על הרקע
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal(this.id);
+        }
+    });
+});
+
+// סגירת המודל בלחיצה על Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal').forEach(modal => {
+            if (modal.style.display === 'block') {
+                closeModal(modal.id);
+            }
+        });
+    }
+});
+    </script>
+</body>
+</html>
