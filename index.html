@@ -548,7 +548,7 @@
                 var(--primary-pink), 
                 var(--primary-purple));
             border-radius: 6px;
-            z-index: 1;
+            z-index: 0;
         }
         
         .timeline-node {
@@ -795,13 +795,14 @@
         
         /* Extra Activities */
         .extra-activities {
-            background: linear-gradient(135deg, rgba(238, 39, 104, 0.05), rgba(119, 104, 175, 0.05));
+            background:#cccccc;
             border-radius: 20px;
             box-shadow: var(--shadow);
             padding: 3rem;
             margin-bottom: 3rem;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
         
         .extra-activities::before {
@@ -813,7 +814,7 @@
             height: 100%;
             background: url('/api/placeholder/800/600') center/cover;
             opacity: 0.03;
-            z-index: 0;
+            z-index: 1;
         }
         
         .extra-activities h2 {
