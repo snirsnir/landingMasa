@@ -38,7 +38,11 @@
             overflow-x: hidden;
         }
         
-        /* Loader Animation */
+        body.loading {
+            overflow: hidden;
+        }
+        
+        /* Simple Loader Animation */
         .loader-container {
             position: fixed;
             top: 0;
@@ -50,13 +54,18 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader-container.hide {
+            opacity: 0;
+            pointer-events: none;
         }
         
         .loader {
             position: relative;
             width: 200px;
             height: 200px;
-            perspective: 1000px;
         }
         
         .time-tunnel {
@@ -74,7 +83,7 @@
                 var(--primary-purple),
                 var(--primary-blue)
             );
-            animation: spin 2s linear infinite, expand 3s forwards 2s;
+            animation: spin 2s linear infinite;
             box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
         }
         
@@ -83,14 +92,11 @@
             100% { transform: rotate(360deg); }
         }
         
-        @keyframes expand {
-            0% { transform: scale(1); }
-            100% { transform: scale(30); opacity: 0; }
-        }
-        
         .loading-text {
             position: absolute;
             bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
             color: white;
             font-size: 1.5rem;
             white-space: nowrap;
@@ -102,142 +108,45 @@
             50% { opacity: 1; }
         }
         
-        /* Time Travel Entry Animation */
-        .time-travel-entry {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            display: none;
-            z-index: 9998;
-            overflow: hidden;
-        }
         .main-site-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-}
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
 
-.main-site-btn a {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 0.8rem 1.5rem;
-    border-radius: 30px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
+        .main-site-btn a {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
-.main-site-btn a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-        .time-vortex {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(
-                circle,
-                rgba(255, 255, 255, 1) 0%,
-                rgba(238, 39, 104, 0.8) 20%,
-                rgba(243, 111, 35, 0.7) 30%,
-                rgba(255, 203, 26, 0.6) 50%,
-                rgba(133, 197, 78, 0.5) 70%,
-                rgba(71, 185, 188, 0.4) 85%,
-                rgba(78, 161, 217, 0.3) 100%
-            );
-            box-shadow: 0 0 100px 50px rgba(255, 255, 255, 0.5);
-            animation: vortexExpand 4s forwards;
-        }
-        
-        @keyframes vortexExpand {
-            0% { 
-                width: 10px; 
-                height: 10px; 
-                border-radius: 50%;
-            }
-            70% { 
-                width: 200vw; 
-                height: 200vh; 
-                border-radius: 50%;
-            }
-            100% { 
-                width: 200vw; 
-                height: 200vh; 
-                border-radius: 0;
-            }
-        }
-        
-        .time-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .particle {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: particleMove 3s linear forwards;
-        }
-        
-        @keyframes particleMove {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(var(--x), var(--y)) scale(0);
-            }
-        }
-        
-        .time-travel-objects {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            perspective: 1000px;
-        }
-        
-        .time-object {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0;
-            animation: objectFloat 6s ease-in-out forwards;
-        }
-        
-        @keyframes objectFloat {
-            0% {
-                transform: translateZ(-1000px) rotate(0deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.7;
-            }
-            80% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateZ(500px) rotate(360deg);
-                opacity: 0;
-            }
+        .main-site-btn a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         
         /* Main Content */
+        #mainContentWrapper {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        #mainContentWrapper.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -377,27 +286,22 @@
         }
         
         h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 900;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    background: linear-gradient(90deg, 
-        var(--primary-blue), 
-        var(--primary-teal), 
-        var(--primary-green), 
-        var(--primary-yellow), 
-        var(--primary-orange), 
-        var(--primary-pink), 
-        var(--primary-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400% 400%;
-    animation: gradientShift 10s infinite;
-}
-        
-        @keyframes glowText {
-            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-            100% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); }
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            background: linear-gradient(90deg, 
+                var(--primary-blue), 
+                var(--primary-teal), 
+                var(--primary-green), 
+                var(--primary-yellow), 
+                var(--primary-orange), 
+                var(--primary-pink), 
+                var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 400% 400%;
+            animation: gradientShift 10s infinite;
         }
         
         @keyframes gradientShift {
@@ -714,6 +618,151 @@
             flex-grow: 1;
         }
         
+        /* Activity Cards with Background Images */
+        .activity-card-with-bg {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+
+        .activity-card-with-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            border-radius: 20px;
+        }
+
+        .activity-card-with-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, 
+                var(--primary-blue), 
+                var(--primary-teal), 
+                var(--primary-green), 
+                var(--primary-yellow), 
+                var(--primary-orange), 
+                var(--primary-pink), 
+                var(--primary-purple));
+            z-index: 2;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .activity-card-with-bg h3, 
+        .activity-card-with-bg p {
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .activity-card-with-bg .activity-icon {
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .activity-card-with-bg h3 {
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+            text-shadow: 
+                -1px -1px 0 rgba(0, 0, 0, 0.9),
+                1px -1px 0 rgba(0, 0, 0, 0.9),
+                -1px 1px 0 rgba(0, 0, 0, 0.9),
+                1px 1px 0 rgba(0, 0, 0, 0.9),
+                0 2px 4px rgba(0, 0, 0, 0.9);
+            font-weight: 700;
+        }
+
+        .activity-card-with-bg p {
+            color: white;
+            position: relative;
+            z-index: 2;
+            text-shadow: 
+                 -1.5px -1.5px 0 rgba(0, 0, 0, 1),
+                 1.5px -1.5px 0 rgba(0, 0, 0, 1),
+                 -1.5px 1.5px 0 rgba(0, 0, 0, 1),
+                 1.5px 1.5px 0 rgba(0, 0, 0, 1),
+                 0 3px 5px rgba(0, 0, 0, 0.7);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        
+        .activity-card-with-bg .activity-icon {
+            color: white;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Activity background classes */
+        .activity-bg-1 {
+            background-image: url('1.jpg');
+        }
+
+        .activity-bg-1::before {
+            background: linear-gradient(135deg, 
+                rgba(78, 161, 217, 0.95),
+                rgba(78, 161, 217, 0.75));
+        }
+
+        .activity-bg-2 {
+            background-image: url('2.jpg');
+        }
+
+        .activity-bg-2::before {
+            background: linear-gradient(135deg, 
+                rgba(71, 185, 188, 0.95),
+                rgba(71, 185, 188, 0.75));
+        }
+
+        .activity-bg-3 {
+            background-image: url('3.jpg');
+        }
+
+        .activity-bg-3::before {
+            background: linear-gradient(135deg, 
+                rgba(238, 39, 104, 0.95),
+                rgba(119, 104, 175, 0.75));
+        }
+
+        .activity-bg-4 {
+            background-image: url('4.jpg');
+        }
+
+        .activity-bg-4::before {
+            background: linear-gradient(135deg, 
+                rgba(255, 203, 26, 0.95),
+                rgba(255, 203, 26, 0.75));
+        }
+
+        .activity-bg-5 {
+            background-image: url('5.jpg');
+        }
+
+        .activity-bg-5::before {
+            background: linear-gradient(135deg, 
+                rgba(243, 111, 35, 0.95),
+                rgba(243, 111, 35, 0.75));
+        }
+
+        .activity-bg-6 {
+            background-image: url('6.jpg');
+        }
+
+        .activity-bg-6::before {
+            background: linear-gradient(135deg, 
+                rgba(133, 197, 78, 0.95),
+                rgba(133, 197, 78, 0.75));
+        }
+        
         /* Info Section */
         .info-section {
             background-color: white;
@@ -798,7 +847,7 @@
         
         /* Extra Activities */
         .extra-activities {
-            background:#cccccc;
+            background: #cccccc;
             border-radius: 20px;
             box-shadow: var(--shadow);
             padding: 3rem;
@@ -845,6 +894,8 @@
             align-items: center;
             transition: all 0.3s ease;
             transform: translateX(0);
+            position: relative;
+            padding-right: 80px;
         }
         
         .extra-item:hover {
@@ -852,6 +903,31 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         
+        .extra-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            margin-left: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+
+        .extra-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .extra-item:hover .extra-image img {
+            transform: scale(1.0);
+        }
+
         .extra-icon {
             font-size: 2rem;
             color: var(--primary-green);
@@ -879,6 +955,31 @@
         
         .extra-item p {
             font-size: 1.1rem;
+        }
+
+        .info-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-teal);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-btn:hover {
+            background: var(--primary-blue);
+            transform: translateY(-50%) scale(1.1);
         }
         
         /* CTA Section */
@@ -947,6 +1048,10 @@
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            color: transparent;
+            -webkit-text-stroke: 1.5px white;
+            text-stroke: 1.5px white;
+            text-shadow: 0 0 10px rgba(255, 221, 0, 0.9), 0 0 20px rgba(255, 221, 0, 0.5);
         }
         
         .cta-section p {
@@ -1038,6 +1143,101 @@
         .scroll-animation.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-purple);
+        }
+
+        .music-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.4s ease-out;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-orange);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--primary-pink);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-teal);
+        }
+
+        .modal-body {
+            margin-top: 20px;
         }
         
         /* Responsive Design */
@@ -1190,399 +1390,39 @@
                     opacity: 0;
                 }
             }
+
+            .extra-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+                text-align: right;
+            }
+
+            .extra-image {
+                width: 100%;
+                height: auto;
+                margin: 0 0 1rem 0;
+            }
+
+            .extra-image img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+
+            .info-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-top: 1rem;
+                align-self: flex-end;
+            }
+
+            .extra-item strong,
+            .extra-item p {
+                width: 100%;
+            }
         }
-        .music-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--primary-blue);
-    color: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-}
-
-.music-btn:hover {
-    transform: scale(1.1);
-    background-color: var(--primary-purple);
-}
-
-.music-btn i {
-    font-size: 1.2rem;
-}
-/* Dissolve Effect for Main Content */
-/* Dissolve Effect with 80s Neon Purple */
-body.loading {
-    overflow: hidden;
-}
-
-#mainContentWrapper {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 2.5s ease-in-out, visibility 0s 0.5s;
-    position: relative;
-}
-
-#mainContentWrapper.visible {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 2.5s ease-in-out;
-}
-
-/* 80s style neon overlay */
-#neonOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(128, 0, 255, 0.8), rgba(200, 0, 255, 0.6), rgba(255, 0, 255, 0.8));
-    z-index: 999;
-    opacity: 1;
-    pointer-events: none;
-    transition: opacity 1.5s ease-in-out;
-}
-
-#neonOverlay.fade-out {
-    opacity: 0;
-}
-
-.fade-in-element {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-    position: relative;
-}
-
-.fade-in-element.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Neon glow effect */
-.neon-glow {
-    text-shadow: 0 0 5px rgba(255, 0, 255, 0.8),
-                 0 0 10px rgba(255, 0, 255, 0.5),
-                 0 0 15px rgba(128, 0, 255, 0.5),
-                 0 0 20px rgba(128, 0, 255, 0.3);
-}
-/* הוסף את זה לקובץ ה-CSS */
-/* סגנון לכרטיסי פעילות עם תמונת רקע */
-/* סגנונות משותפים לכל כרטיסי הפעילויות עם רקע תמונה */
-/* סגנונות משותפים לכל כרטיסי הפעילויות עם רקע תמונה */
-.activity-card-with-bg {
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    z-index: 1;
-    color: white;
-}
-
-.activity-card-with-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    border-radius: 20px;
-}
-
-.activity-card-with-bg::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(to right, 
-        var(--primary-blue), 
-        var(--primary-teal), 
-        var(--primary-green), 
-        var(--primary-yellow), 
-        var(--primary-orange), 
-        var(--primary-pink), 
-        var(--primary-purple));
-    z-index: 2;
-    border-radius: 20px 20px 0 0;
-}
-
-.activity-card-with-bg h3, 
-.activity-card-with-bg p {
-    color: white;
-    position: relative;
-    z-index: 2;
-}
-
-.activity-card-with-bg .activity-icon {
-    color: white;
-    position: relative;
-    z-index: 2;
-}
-
-/* עדכון לסגנון הטקסט בכרטיסיות להוספת stroke שחור */
-.activity-card-with-bg h3 {
-    border-bottom-color: rgba(255, 255, 255, 0.3);
-    text-shadow: 
-        -1px -1px 0 rgba(0, 0, 0, 0.9),
-        1px -1px 0 rgba(0, 0, 0, 0.9),
-        -1px 1px 0 rgba(0, 0, 0, 0.9),
-        1px 1px 0 rgba(0, 0, 0, 0.9),
-        0 2px 4px rgba(0, 0, 0, 0.9);
-    font-weight: 700;
-}
-
-.activity-card-with-bg p {
-    color: white;
-    position: relative;
-    z-index: 2;
-    text-shadow: 
-         -1.5px -1.5px 0 rgba(0, 0, 0, 1),
-         1.5px -1.5px 0 rgba(0, 0, 0, 1),
-         -1.5px 1.5px 0 rgba(0, 0, 0, 1),
-         1.5px 1.5px 0 rgba(0, 0, 0, 1),
-         0 3px 5px rgba(0, 0, 0, 0.7);
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
-.activity-card-with-bg .activity-icon {
-    color: white;
-    position: relative;
-    z-index: 2;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-}
-
-/* סגנון ספציפי עבור כרטיס 1 - סדנת כתב (כחול) */
-.activity-bg-1 {
-    background-image: url('1.jpg');
-}
-
-.activity-bg-1::before {
-    background: linear-gradient(135deg, 
-        rgba(78, 161, 217, 0.95), /* --primary-blue */
-        rgba(78, 161, 217, 0.75));
-}
-
-/* סגנון ספציפי עבור כרטיס 2 - התפתחות המיקרוסקופ (טורקיז) */
-.activity-bg-2 {
-    background-image: url('2.jpg');
-}
-
-.activity-bg-2::before {
-    background: linear-gradient(135deg, 
-        rgba(71, 185, 188, 0.95), /* --primary-teal */
-        rgba(71, 185, 188, 0.75));
-}
-
-/* סגנון ספציפי עבור כרטיס 3 - משחקי מחשב (סגול וורוד) */
-.activity-bg-3 {
-    background-image: url('3.jpg');
-}
-
-.activity-bg-3::before {
-    background: linear-gradient(135deg, 
-        rgba(238, 39, 104, 0.95), /* --primary-pink */
-        rgba(119, 104, 175, 0.75)); /* --primary-purple */
-}
-
-/* סגנון ספציפי עבור כרטיס 4 - פארק המדע (צהוב) */
-.activity-bg-4 {
-    background-image: url('4.jpg');
-}
-
-.activity-bg-4::before {
-    background: linear-gradient(135deg, 
-        rgba(255, 203, 26, 0.95), /* --primary-yellow */
-        rgba(255, 203, 26, 0.75));
-}
-
-/* סגנון ספציפי עבור כרטיס 5 - משחקי רצפה (כתום) */
-.activity-bg-5 {
-    background-image: url('5.jpg');
-}
-
-.activity-bg-5::before {
-    background: linear-gradient(135deg, 
-        rgba(243, 111, 35, 0.95), /* --primary-orange */
-        rgba(243, 111, 35, 0.75));
-}
-
-/* סגנון ספציפי עבור כרטיס 6 - דיאלוג בזמן (ירוק) */
-.activity-bg-6 {
-    background-image: url('6.jpg');
-}
-
-.activity-bg-6::before {
-    background: linear-gradient(135deg, 
-        rgba(133, 197, 78, 0.95), /* --primary-green */
-        rgba(133, 197, 78, 0.75));
-}
-/* Style for Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    overflow-y: auto;
-}
-
-.modal-content {
-    position: relative;
-    background: white;
-    width: 80%;
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transform: translateY(50px);
-    opacity: 0;
-    transition: all 0.4s ease-out;
-}
-
-.modal.active .modal-content {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.modal-close {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--primary-orange);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.modal-close:hover {
-    background: var(--primary-pink);
-    transform: rotate(90deg);
-}
-
-.modal-title {
-    font-size: 2rem;
-    color: var(--primary-blue);
-    text-align: center;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 3px solid var(--primary-teal);
-}
-
-.modal-body {
-    margin-top: 20px;
-}
-
-/* Updated Extra Activities Section with Images */
-.extra-item {
-    position: relative;
-    padding-right: 80px;
-}
-
-.extra-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    margin-left: 1.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f0f0;
-}
-
-.extra-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.3s ease;
-}
-
-.extra-item:hover .extra-image img {
-    transform: scale(1.0);
-}
-
-
-.info-btn {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--primary-teal);
-    color: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.info-btn:hover {
-    background: var(--primary-blue);
-    transform: translateY(-50%) scale(1.1);
-}
-@media (max-width: 480px) {
-  .extra-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-    text-align: right;
-  }
-
-  .extra-image {
-    width: 100%;
-    height: auto;
-    margin: 0 0 1rem 0;
-  }
-
-  .extra-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
-  .info-btn {
-    position: relative;
-    top: auto;
-    left: auto;
-    margin-top: 1rem;
-    align-self: flex-end;
-  }
-
-  .extra-item strong,
-  .extra-item p {
-    width: 100%;
-  }
-}
-
     </style>
 </head>
 <body class="loading">
@@ -1590,7 +1430,7 @@ body.loading {
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMN7RNRD"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    <!-- Loader -->
+    <!-- Simple Loader -->
     <div class="loader-container" id="loader">
         <div class="loader">
             <div class="time-tunnel"></div>
@@ -1598,13 +1438,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="loading-text">טוענים את מנהרת הזמן...</div>
     </div>
     
-    <!-- Time Travel Entry Animation -->
-    <div class="time-travel-entry" id="timeTravel">
-        <div class="time-vortex"></div>
-        <div class="time-particles" id="timeParticles"></div>
-        <div class="time-travel-objects" id="travelObjects"></div>
-    </div>
-    <div id="neonOverlay"></div>
     <div id="mainContentWrapper">
     <header>
         <div class="space-background"></div>
@@ -1626,7 +1459,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <img src="https://media.getmood.io/warehouse/dynamic/217495.png" alt="טכנודע חדרה" class="logo">
                 </div>
                 <h1>טכנודע חדרה לוקח אתכם למסע במנהרת הזמן</h1>
-                <div class="event-date animate__animated animate__fadeInUp">הפנינג קיץ • 1-31 לאוגוסט • 09:00-16:00</div>
+                <div class="event-date animate__animated animate__fadeInUp">הפנינג סוכות • 8-12 לאוקטובר • 09:00-16:00</div>
                 <div class="countdown animate__animated animate__fadeIn animate__delay-1s">
                     <div class="countdown-item">
                         <div class="countdown-number" id="seconds">00</div>
@@ -1662,8 +1495,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="timeline-node" style="top: 150px;"></div>
                 <h2 class="section-title">הטכנודע - המוזיאון הישראלי לרפואה ומדע מזמין את כל ילדי ישראל</h2>
                 <div class="hero-content">
-<img src="https://i.ibb.co/C5Mqs3cC/image001.jpg" alt="מסע במנהרת הזמן" style="width: 300px; height: 400px; object-fit: cover; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);">
-                    <p><strong>בחופשת הקיץ, יוכלו הילדים לחוות מסע בלתי נשכח דרך מנהרת הזמן, שם יפגשו את המדענים הגדולים בהיסטוריה ויגלו את ההמצאות ששינו את עולמנו.</strong> בתוכנית מגוון סדנאות הכוללות התנסויות מדעיות מעשיות, מולטימדיה מרתקת ומשחקי מחשב ורצפה נוסטלגיים.</p>
+<img src="https://i.ibb.co/4w5TMy2S/image.jpg" alt="מסע במנהרת הזמן" style="width: 500px; height: 500px; object-fit: cover; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);">
+                    <p><strong>בחופשת סוכות, יוכלו הילדים לחוות מסע בלתי נשכח דרך מנהרת הזמן, שם יפגשו את המדענים הגדולים בהיסטוריה ויגלו את ההמצאות ששינו את עולמנו.</strong> בתוכנית מגוון סדנאות הכוללות התנסויות מדעיות מעשיות, מולטימדיה מרתקת ומשחקי מחשב ורצפה נוסטלגיים.</p>
                     <a href="https://web.attractinet.co.il/TechnoDa/?jumpTo=Purches&lang=he" target="_blank" rel="noopener noreferrer" class="btn">לרכישת כרטיסים</a>
                 </div>
             </section>
@@ -1725,7 +1558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="info-icon"><i class="far fa-calendar-alt"></i></div>
                         <div class="info-text">
                             <h3>תאריכים</h3>
-                            <p>1-31 לאוגוסט 2025 (חופשת הקיץ)</p>
+                            <p>8-12 לאוקטובר (חול המועד סוכות)</p>
                         </div>
                     </div>
                     
@@ -1823,15 +1656,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="timeline-node" style="top: 120px;"></div>
                 <div class="time-bubbles" id="timeBubbles"></div>
                 <div class="cta-content">
-                    <h2 class="section-title" style="
-    color: transparent;
-    -webkit-text-stroke: 1.5px white;
-    text-stroke: 1.5px white;
-    text-shadow: 0 0 10px rgba(255, 221, 0, 0.9), 0 0 20px rgba(255, 221, 0, 0.5);
-">
-    הצטרפו אלינו למסע במנהרת הזמן!
-</h2>
-
+                    <h2 class="section-title">הצטרפו אלינו למסע במנהרת הזמן!</h2>
                     <p>חוויה בלתי נשכחת לכל המשפחה, שתשלב למידה משמעותית עם כיף והנאה בקיץ. אל תפספסו את ההזדמנות להיכנס למנהרת הזמן ולפגוש את גדולי המדע והממציאים!</p>
                     <a href="https://web.attractinet.co.il/TechnoDa/?jumpTo=Purches&lang=he" target="_blank" rel="noopener noreferrer" class="btn btn-large">לרכישת כרטיסים עכשיו</a>
                 </div>
@@ -1858,9 +1683,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
         </div>
-    </div>
-
     </footer>
+
     <audio id="background-music" loop>
         <source src="1.mp3" type="audio/mpeg">
     </audio>
@@ -1868,6 +1692,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button id="music-toggle" class="music-btn">
         <i class="fas fa-volume-mute" id="music-icon"></i>
     </button>
+
     <!-- Modals -->
     <div id="modal1" class="modal">
         <div class="modal-content" style="position: relative; overflow: hidden;">
@@ -1982,7 +1807,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </li>
                 <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
                   <i class="fas fa-route" style="position: absolute; right: 0; color: var(--primary-green);"></i>
-                  שני מסלולי סיור מרתקים: <strong>“לגעת בלב”</strong> ו־<strong>“המוח הגמיש”</strong>, כל אחד עם 3 תערוכות
+                  שני מסלולי סיור מרתקים: <strong>"לגעת בלב"</strong> ו־<strong>"המוח הגמיש"</strong>, כל אחד עם 3 תערוכות
                 </li>
                 <li style="margin-bottom: 1rem; position: relative; padding-right: 1.5rem;">
                   <i class="fas fa-user-friends" style="position: absolute; right: 0; color: var(--primary-orange);"></i>
@@ -2063,160 +1888,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
 </div>
     <script>
-        // Initial Loading Animation
-// Initial Loading Animation
-// Initial Loading Animation
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        document.getElementById('loader').style.display = 'none';
-        document.getElementById('timeTravel').style.display = 'block';
-        
-        // Create time travel particles
-        createTimeParticles();
-        
-        // Create time travel objects
-        createTimeObjects();
-        
-        // After time travel animation completes
-        setTimeout(function() {
-            document.getElementById('timeTravel').style.display = 'none';
-            
-            // Make sure we're at the top of the page
-            window.scrollTo(0, 0);
-            
-            // Show neon overlay
-            const neonOverlay = document.getElementById('neonOverlay');
-            neonOverlay.style.display = 'block';
-            
-            // Generate stars in the header
-            createStars();
-            
-            // Create time bubbles in CTA section
-            createTimeBubbles();
-            
-            // Trigger the main content dissolve effect with neon overlay
+        // Simple Loading Animation
+        window.addEventListener('load', function() {
             setTimeout(function() {
-                const mainContent = document.getElementById('mainContentWrapper');
-                mainContent.classList.add('visible');
+                // הסתר את הלודר
+                const loader = document.getElementById('loader');
+                loader.classList.add('hide');
+                
+                // הסר את קלאס loading מהbody
                 document.body.classList.remove('loading');
                 
-                // Start fading out the neon overlay
+                // הסר את הלודר מהDOM לחלוטין אחרי האנימציה
                 setTimeout(function() {
-                    neonOverlay.classList.add('fade-out');
+                    loader.style.display = 'none';
                 }, 500);
                 
-                // Apply sequential fade-in to elements with neon glow effect
-                sequentialFadeIn();
-            }, 200);
-        }, 4000);
-    }, 3000);
-});
-
-// Function to apply sequential fade-in to elements with neon effect
-function sequentialFadeIn() {
-    const elements = document.querySelectorAll('header, section, footer');
-    
-    elements.forEach((element, index) => {
-        element.classList.add('fade-in-element');
-        
-        // Add temporary neon glow to text elements during fade-in
-        const textElements = element.querySelectorAll('h1, h2, h3, .countdown-number');
-        textElements.forEach(textEl => {
-            textEl.classList.add('neon-glow');
-            
-            // Remove the neon glow after animation completes
-            setTimeout(() => {
-                textEl.classList.remove('neon-glow');
-            }, 3000 + (index * 300));
+                // הצג את התוכן הראשי
+                const mainContent = document.getElementById('mainContentWrapper');
+                mainContent.classList.add('visible');
+                
+                // יצירת כוכבים וחוויות אחרות
+                createStars();
+                createTimeBubbles();
+                
+                // הפעל אנימציות גלילה
+                setTimeout(checkScrollAnimation, 100);
+                
+            }, 2000); // 2 שניות של הצגת הלודר
         });
-        
-        setTimeout(() => {
-            element.classList.add('visible');
-        }, 300 * (index + 1));
-    });
-}
-
-// Function to apply sequential fade-in to elements
-function sequentialFadeIn() {
-    const elements = document.querySelectorAll('header, section, footer');
-    
-    elements.forEach((element, index) => {
-        element.classList.add('fade-in-element');
-        
-        setTimeout(() => {
-            element.classList.add('visible');
-        }, 300 * (index + 1)); // Each element appears with a 300ms delay after the previous one
-    });
-}
-        
-        // Create time particles
-        function createTimeParticles() {
-            const particlesContainer = document.getElementById('timeParticles');
-            const particleCount = 100;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size
-                const size = Math.random() * 5 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                particle.style.top = `${posY}%`;
-                particle.style.left = `${posX}%`;
-                
-                // Random direction
-                const dirX = (Math.random() - 0.5) * 200;
-                const dirY = (Math.random() - 0.5) * 200;
-                particle.style.setProperty('--x', `${dirX}%`);
-                particle.style.setProperty('--y', `${dirY}%`);
-                
-                // Random delay
-                particle.style.animationDelay = `${Math.random() * 3}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Create time travel objects
-        function createTimeObjects() {
-            const objectsContainer = document.getElementById('travelObjects');
-            const objectsCount = 15;
-            const icons = [
-                'fa-microscope', 'fa-lightbulb', 'fa-flask', 'fa-atom', 
-                'fa-brain', 'fa-dna', 'fa-rocket', 'fa-satellite', 
-                'fa-telescope', 'fa-gamepad', 'fa-robot', 'fa-scroll',
-                'fa-clock', 'fa-compass', 'fa-book'
-            ];
-            
-            for (let i = 0; i < objectsCount; i++) {
-                const timeObject = document.createElement('div');
-                timeObject.classList.add('time-object');
-                
-                // Create icon
-                const icon = document.createElement('i');
-                icon.classList.add('fas', icons[i % icons.length]);
-                icon.style.fontSize = '50px';
-                icon.style.color = getRandomColor();
-                
-                timeObject.appendChild(icon);
-                
-                // Random position
-                const posX = Math.random() * 80 + 10;
-                const posY = Math.random() * 80 + 10;
-                timeObject.style.top = `${posY}%`;
-                timeObject.style.left = `${posX}%`;
-                
-                // Random delay
-                timeObject.style.animationDelay = `${Math.random() * 2}s`;
-                
-                objectsContainer.appendChild(timeObject);
-            }
-        }
         
         // Create stars in header
         function createStars() {
@@ -2275,55 +1974,50 @@ function sequentialFadeIn() {
             }
         }
         
-        // Get random color from brand colors
-        function getRandomColor() {
-            const colors = [
-                '#4EA1D9', '#47B9BC', '#85C54E', 
-                '#FFCB1A', '#F36F23', '#EE2768', '#7768AF'
-            ];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-        
         // Countdown Timer
         function updateCountdown() {
-    const eventDate = new Date('August 1, 2025 09:00:00').getTime();
-    const now = new Date().getTime();
-    const timeLeft = eventDate - now;
-    
-    if (timeLeft > 0) {
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        
-        document.getElementById('days').innerText = days.toString().padStart(2, '0');
-        document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
-    }
-}
+            const eventDate = new Date('October 8, 2025 09:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+            
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
 
-updateCountdown();
-// שינוי עדכון הספירה לאחור לכל שנייה במקום כל דקה
-setInterval(updateCountdown, 1000);
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
         
         // Scroll Animation
-// Scroll Animation
-function checkScrollAnimation() {
-    const elements = document.querySelectorAll('.scroll-animation:not(.fade-in-element)');
-    
-    elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (elementPosition < windowHeight - 50) {
-            element.classList.add('active');
+        function checkScrollAnimation() {
+            const elements = document.querySelectorAll('.scroll-animation');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 50) {
+                    element.classList.add('active');
+                }
+            });
         }
-    });
-}
+        
         window.addEventListener('scroll', checkScrollAnimation);
         window.addEventListener('load', () => {
-            setTimeout(checkScrollAnimation, 4500);
+            setTimeout(checkScrollAnimation, 2500);
         });
         
         // Smooth scroll for internal links
@@ -2344,87 +2038,78 @@ function checkScrollAnimation() {
                 behavior: 'smooth'
             });
         });
+        
+        // Music functionality
         const backgroundMusic = document.getElementById('background-music');
-    const musicToggle = document.getElementById('music-toggle');
-    const musicIcon = document.getElementById('music-icon');
-    let isMusicPlaying = false;
-    
-    // נמוך את עוצמת השמע
-    backgroundMusic.volume = 0.2;
-    
-    musicToggle.addEventListener('click', function() {
-        if (isMusicPlaying) {
-            backgroundMusic.pause();
-            musicIcon.classList.remove('fa-volume-up');
-            musicIcon.classList.add('fa-volume-mute');
-        } else {
-            backgroundMusic.play();
-            musicIcon.classList.remove('fa-volume-mute');
-            musicIcon.classList.add('fa-volume-up');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        let isMusicPlaying = false;
+        
+        backgroundMusic.volume = 0.2;
+        
+        musicToggle.addEventListener('click', function() {
+            if (isMusicPlaying) {
+                backgroundMusic.pause();
+                musicIcon.classList.remove('fa-volume-up');
+                musicIcon.classList.add('fa-volume-mute');
+            } else {
+                backgroundMusic.play();
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-volume-up');
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+        
+        document.addEventListener('click', function() {
+            if (!isMusicPlaying) {
+                backgroundMusic.play().catch(error => {
+                    console.log('Auto-play was prevented');
+                });
+                isMusicPlaying = true;
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-volume-up');
+            }
+        }, { once: true });
+        
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
         }
-        isMusicPlaying = !isMusicPlaying;
-    });
-    
-    // נגן מוזיקה רק לאחר אינטראקציה של המשתמש עם העמוד
-    document.addEventListener('click', function() {
-        if (!isMusicPlaying) {
-            backgroundMusic.play().catch(error => {
-                console.log('Auto-play was prevented');
-            });
-            isMusicPlaying = true;
-            musicIcon.classList.remove('fa-volume-mute');
-            musicIcon.classList.add('fa-volume-up');
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400);
         }
-    }, { once: true });
-    // Always scroll to top when the dissolve effect starts
-document.addEventListener('DOMContentLoaded', function() {
-    window.scrollTo(0, 0);
-});
-// Modal functions
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.style.display = 'block';
-    
-    // ניתן טיפה זמן להצגת המודל לפני הפעלת האנימציה
-    setTimeout(() => {
-        modal.classList.add('active');
-    }, 10);
-    
-    // מניעת גלילה בדף הרקע
-    document.body.style.overflow = 'hidden';
-}
 
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.classList.remove('active');
-    
-    // נמתין עד שהאנימציה תסתיים לפני הסתרת המודל
-    setTimeout(() => {
-        modal.style.display = 'none';
-        // החזרת אפשרות הגלילה
-        document.body.style.overflow = 'auto';
-    }, 400);
-}
-
-// סגירת המודל בלחיצה על הרקע
-document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal(this.id);
-        }
-    });
-});
-
-// סגירת המודל בלחיצה על Escape
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
         document.querySelectorAll('.modal').forEach(modal => {
-            if (modal.style.display === 'block') {
-                closeModal(modal.id);
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        closeModal(modal.id);
+                    }
+                });
             }
         });
-    }
-});
     </script>
 </body>
 </html>
